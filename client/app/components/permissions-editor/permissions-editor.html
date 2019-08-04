@@ -5,7 +5,7 @@
 <div class="modal-body">
   <div style="overflow: auto; height: 300px">
     <ui-select ng-model="$ctrl.newGrantees.selected" on-select="$ctrl.addGrantee($item)">
-       <ui-select-match placeholder="Add New User"></ui-select-match>
+       <ui-select-match placeholder="添加新用户"></ui-select-match>
        <ui-select-choices repeat="user in $ctrl.foundUsers | filter:$select.search"
                          refresh="$ctrl.findUser($select.search)"
                          refresh-delay="0"

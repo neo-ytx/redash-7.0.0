@@ -58,7 +58,7 @@ class UserProfile extends React.Component {
 
 export default function init(ngModule) {
   settingsMenu.add({
-    title: 'Account',
+    title: '账户',
     path: 'users/me',
     order: 7,
   });

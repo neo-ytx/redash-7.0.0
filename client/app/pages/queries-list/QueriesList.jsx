@@ -23,6 +23,7 @@ import { routesToAngularRoutes } from '@/lib/utils';
 import QueriesListEmptyState from './QueriesListEmptyState';
 
 import './queries-list.css';
+import titletranslate from '@/i18n/titletranslate';
 
 class QueriesList extends React.Component {
   static propTypes = {
@@ -33,24 +34,24 @@ class QueriesList extends React.Component {
     {
       key: 'all',
       href: 'queries',
-      title: 'All Queries',
+      title: '所有查询',
     },
     {
       key: 'favorites',
       href: 'queries/favorites',
-      title: 'Favorites',
+      title: '喜爱的查询',
       icon: () => <Sidebar.MenuIcon icon="fa fa-star" />,
     },
     {
       key: 'archive',
       href: 'queries/archive',
-      title: 'Archived',
+      title: '已归档查询',
       icon: () => <Sidebar.MenuIcon icon="fa fa-archive" />,
     },
     {
       key: 'my',
       href: 'queries/my',
-      title: 'My Queries',
+      title: '我的查询',
       icon: () => <Sidebar.ProfileImage user={currentUser} />,
       isAvailable: () => currentUser.hasPermission('create_query'),
     },
@@ -69,17 +70,17 @@ class QueriesList extends React.Component {
         />
       </React.Fragment>
     ), {
-      title: 'Name',
+      title: '名称',
       field: 'name',
       width: null,
     }),
-    Columns.avatar({ field: 'user', className: 'p-l-0 p-r-0' }, name => `Created by ${name}`),
-    Columns.dateTime.sortable({ title: 'Created At', field: 'created_at' }),
-    Columns.duration.sortable({ title: 'Runtime', field: 'runtime' }),
-    Columns.dateTime.sortable({ title: 'Last Executed At', field: 'retrieved_at', orderByField: 'executed_at' }),
+    Columns.avatar({ field: 'user', className: 'p-l-0 p-r-0' }, name => `由 ${name} 创建`),
+    Columns.dateTime.sortable({ title: '创建于', field: 'created_at' }),
+    Columns.duration.sortable({ title: '运行时间', field: 'runtime' }),
+    Columns.dateTime.sortable({ title: '上次运行于', field: 'retrieved_at', orderByField: 'executed_at' }),
     Columns.custom.sortable(
       (text, item) => <SchedulePhrase schedule={item.schedule} isNew={item.isNew()} />,
-      { title: 'Update Schedule', field: 'schedule' },
+      { title: '更新时间表', field: 'schedule' },
     ),
   ];
 
@@ -87,11 +88,11 @@ class QueriesList extends React.Component {
     const { controller } = this.props;
     return (
       <div className="container">
-        <PageHeader title={controller.params.title} />
+        <PageHeader title={titletranslate[controller.params.title]} />
         <Layout className="m-l-15 m-r-15">
           <Layout.Sidebar className="m-b-0">
             <Sidebar.SearchInput
-              placeholder="Search Queries..."
+              placeholder="搜索查询..."
               value={controller.searchTerm}
               onChange={controller.updateSearch}
             />
@@ -162,22 +163,22 @@ export default function init(ngModule) {
   return routesToAngularRoutes([
     {
       path: '/queries',
-      title: 'Queries',
+      title: '所有查询',
       key: 'all',
     },
     {
       path: '/queries/favorites',
-      title: 'Favorite Queries',
+      title: '喜爱的查询',
       key: 'favorites',
     },
     {
       path: '/queries/archive',
-      title: 'Archived Queries',
+      title: '已归档查询',
       key: 'archive',
     },
     {
       path: '/queries/my',
-      title: 'My Queries',
+      title: '我的查询',
       key: 'my',
     },
   ], {

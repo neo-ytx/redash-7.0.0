@@ -33,7 +33,7 @@ function OrganizationSettingsCtrl($http, toastr, clientConfig, Events) {
 export default function init(ngModule) {
   settingsMenu.add({
     permission: 'admin',
-    title: 'Settings',
+    title: '设置',
     path: 'settings/organization',
     order: 6,
   });

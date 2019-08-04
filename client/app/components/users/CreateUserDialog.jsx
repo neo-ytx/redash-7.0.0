@@ -45,7 +45,7 @@ class CreateUserDialog extends React.Component {
     return (
       <Modal
         {...this.props.dialog.props}
-        title="Create a New User"
+        title="创建新用户"
         okText="Create"
         okButtonProps={{ loading: savingUser }}
         onOk={() => this.createUser()}

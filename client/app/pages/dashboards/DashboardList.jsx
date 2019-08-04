@@ -21,6 +21,7 @@ import { routesToAngularRoutes } from '@/lib/utils';
 import DashboardListEmptyState from './DashboardListEmptyState';
 
 import './dashboard-list.css';
+import titletranslate from '@/i18n/titletranslate';
 
 class DashboardList extends React.Component {
   static propTypes = {
@@ -31,12 +32,12 @@ class DashboardList extends React.Component {
     {
       key: 'all',
       href: 'dashboards',
-      title: 'All Dashboards',
+      title: '所有仪表板',
     },
     {
       key: 'favorites',
       href: 'dashboards/favorites',
-      title: 'Favorites',
+      title: '喜爱的仪表板',
       icon: () => <Sidebar.MenuIcon icon="fa fa-star" />,
     },
   ];
@@ -54,13 +55,13 @@ class DashboardList extends React.Component {
         />
       </React.Fragment>
     ), {
-      title: 'Name',
+      title: '名称',
       field: 'name',
       width: null,
     }),
-    Columns.avatar({ field: 'user', className: 'p-l-0 p-r-0' }, name => `Created by ${name}`),
+    Columns.avatar({ field: 'user', className: 'p-l-0 p-r-0' }, name => `由 ${name} 创建`),
     Columns.dateTime.sortable({
-      title: 'Created At',
+      title: '创建于',
       field: 'created_at',
       className: 'text-nowrap',
       width: '1%',
@@ -71,11 +72,11 @@ class DashboardList extends React.Component {
     const { controller } = this.props;
     return (
       <div className="container">
-        <PageHeader title={controller.params.title} />
+        <PageHeader title={titletranslate[controller.params.title]} />
         <Layout className="m-l-15 m-r-15">
           <Layout.Sidebar className="m-b-0">
             <Sidebar.SearchInput
-              placeholder="Search Dashboards..."
+              placeholder="搜索仪表板..."
               value={controller.searchTerm}
               onChange={controller.updateSearch}
             />
@@ -144,12 +145,12 @@ export default function init(ngModule) {
   return routesToAngularRoutes([
     {
       path: '/dashboards',
-      title: 'Dashboards',
+      title: '所有仪表板',
       key: 'all',
     },
     {
       path: '/dashboards/favorites',
-      title: 'Favorite Dashboards',
+      title: '喜爱的仪表板',
       key: 'favorites',
     },
   ], {

@@ -66,17 +66,17 @@ class UsersList extends React.Component {
     {
       key: 'active',
       href: 'users',
-      title: 'Active Users',
+      title: '激活用户',
     },
     {
       key: 'pending',
       href: 'users/pending',
-      title: 'Pending Invitations',
+      title: '待处理邀请',
     },
     {
       key: 'disabled',
       href: 'users/disabled',
-      title: 'Disabled Users',
+      title: '不可用用户',
       isAvailable: () => policy.canCreateUser(),
     },
   ];
@@ -85,24 +85,24 @@ class UsersList extends React.Component {
     Columns.custom.sortable((text, user) => (
       <UserPreviewCard user={user} withLink />
     ), {
-      title: 'Name',
+      title: '名称',
       field: 'name',
       width: null,
     }),
     Columns.custom.sortable((text, user) => map(user.groups, group => (
       <a key={'group' + group.id} className="label label-tag" href={'groups/' + group.id}>{group.name}</a>
     )), {
-      title: 'Groups',
+      title: '所有组',
       field: 'groups',
     }),
     Columns.timeAgo.sortable({
-      title: 'Joined',
+      title: '加入时间',
       field: 'created_at',
       className: 'text-nowrap',
       width: '1%',
     }),
     Columns.timeAgo.sortable({
-      title: 'Last Active At',
+      title: '上次活跃于',
       field: 'active_at',
       className: 'text-nowrap',
       width: '1%',
@@ -174,7 +174,7 @@ class UsersList extends React.Component {
       <div className="m-b-15">
         <Button type="primary" disabled={!policy.isCreateUserEnabled()} onClick={this.showCreateUserDialog}>
           <i className="fa fa-plus m-r-5" />
-          New User
+          新用户
         </Button>
         <DynamicComponent name="UsersListExtra" />
       </div>
@@ -232,7 +232,7 @@ class UsersList extends React.Component {
 export default function init(ngModule) {
   settingsMenu.add({
     permission: 'list_users',
-    title: 'Users',
+    title: '用户',
     path: 'users',
     isActive: path => path.startsWith('/users') && (path !== '/users/me'),
     order: 2,

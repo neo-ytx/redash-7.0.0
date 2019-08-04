@@ -15,6 +15,7 @@ import ItemsTable, { Columns } from '@/components/items-list/components/ItemsTab
 
 import { Alert } from '@/services/alert';
 import { routesToAngularRoutes } from '@/lib/utils';
+import titletranslate from '@/i18n/titletranslate';
 
 const STATE_CLASS = {
   unknown: 'label-warning',
@@ -61,7 +62,7 @@ class AlertsList extends React.Component {
 
     return (
       <div className="container">
-        <PageHeader title={controller.params.title} />
+        <PageHeader title={titletranslate[controller.params.title]} />
         <div className="m-l-15 m-r-15">
           {!controller.isLoaded && <LoadingState className="" />}
           {controller.isLoaded && controller.isEmpty && (

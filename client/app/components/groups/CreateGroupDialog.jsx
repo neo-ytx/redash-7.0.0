@@ -22,7 +22,7 @@ class CreateGroupDialog extends React.Component {
   render() {
     const { dialog } = this.props;
     return (
-      <Modal {...dialog.props} title="Create a New Group" okText="Create" onOk={() => this.save()}>
+      <Modal {...dialog.props} title="创建新的组" okText="Create" onOk={() => this.save()}>
         <Input
           className="form-control"
           defaultValue={this.state.name}

@@ -38,9 +38,9 @@ class GroupsList extends React.Component {
     }),
     Columns.custom((text, group) => (
       <Button.Group>
-        <Button href={`groups/${group.id}`}>Members</Button>
+        <Button href={`groups/${group.id}`}>所有成员</Button>
         {currentUser.isAdmin && (
-          <Button href={`groups/${group.id}/data_sources`}>Data Sources</Button>
+          <Button href={`groups/${group.id}/data_sources`}>所有数据源</Button>
         )}
       </Button.Group>
     ), {
@@ -57,7 +57,7 @@ class GroupsList extends React.Component {
           title={canRemove ? null : 'Cannot delete built-in group'}
           onClick={() => this.onGroupDeleted()}
         >
-          Delete
+          删除
         </DeleteGroupButton>
       );
     }, {
@@ -87,7 +87,7 @@ class GroupsList extends React.Component {
           <div className="m-b-15">
             <Button type="primary" onClick={this.createGroup}>
               <i className="fa fa-plus m-r-5" />
-              New Group
+              新组
             </Button>
           </div>
         )}
@@ -123,7 +123,7 @@ class GroupsList extends React.Component {
 export default function init(ngModule) {
   settingsMenu.add({
     permission: 'list_users',
-    title: 'Groups',
+    title: '所有组',
     path: 'groups',
     order: 3,
   });
@@ -148,7 +148,7 @@ export default function init(ngModule) {
   return routesToAngularRoutes([
     {
       path: '/groups',
-      title: 'Groups',
+      title: '所有组',
       key: 'groups',
     },
   ], {

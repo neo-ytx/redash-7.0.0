@@ -42,12 +42,12 @@ class GroupDataSources extends React.Component {
     {
       key: 'users',
       href: `groups/${this.groupId}`,
-      title: 'Members',
+      title: '所有成员',
     },
     {
       key: 'datasources',
       href: `groups/${this.groupId}/data_sources`,
-      title: 'Data Sources',
+      title: '所有数据源',
       isAvailable: () => currentUser.isAdmin,
     },
   ];

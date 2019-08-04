@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { $http } from '@/services/ng';
 import Table from 'antd/lib/table';
 import Col from 'antd/lib/col';
 import Row from 'antd/lib/row';
@@ -11,6 +10,7 @@ import Tabs from 'antd/lib/tabs';
 import Alert from 'antd/lib/alert';
 import moment from 'moment';
 import values from 'lodash/values';
+import { $http } from '@/services/ng';
 import { Columns } from '@/components/items-list/components/ItemsTable';
 
 function parseTasks(tasks) {

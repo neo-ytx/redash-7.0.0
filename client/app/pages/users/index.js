@@ -37,12 +37,12 @@ export default function init() {
   const profileRoutes = routesToAngularRoutes([
     {
       path: '/users/me',
-      title: 'Account',
+      title: '账户',
       key: 'users',
     },
     {
       path: '/users/:userId',
-      title: 'Users',
+      title: '所有用户',
       key: 'users',
     },
   ], {

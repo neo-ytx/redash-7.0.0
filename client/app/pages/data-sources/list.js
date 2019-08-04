@@ -10,7 +10,7 @@ function DataSourcesCtrl(DataSource) {
 export default function init(ngModule) {
   settingsMenu.add({
     permission: 'admin',
-    title: 'Data Sources',
+    title: '数据源',
     path: 'data_sources',
     order: 1,
   });
@@ -23,7 +23,7 @@ export default function init(ngModule) {
   return {
     '/data_sources': {
       template: '<ds-list-page></ds-list-page>',
-      title: 'Data Sources',
+      title: '数据源',
     },
   };
 }
