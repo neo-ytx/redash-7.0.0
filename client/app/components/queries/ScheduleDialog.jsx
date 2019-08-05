@@ -8,10 +8,10 @@ import Radio from 'antd/lib/radio';
 import { capitalize, clone, isEqual } from 'lodash';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import { secondsToInterval, durationHumanize, pluralize, IntervalEnum, localizeTime } from '@/filters';
-import { wrap as wrapDialog, DialogPropType } from '@/components/DialogWrapper';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/es/locale-provider/zh_CN';
+import { secondsToInterval, durationHumanize, pluralize, IntervalEnum, localizeTime } from '@/filters';
+import { wrap as wrapDialog, DialogPropType } from '@/components/DialogWrapper';
 import { RefreshScheduleType, RefreshScheduleDefault, Moment } from '../proptypes';
 
 import './ScheduleDialog.css';

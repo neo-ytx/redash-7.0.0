@@ -19,7 +19,7 @@
     </thead>
     <thead ng-if="$ctrl.searchColumns.length > 0">
       <th class="p-t-10 p-b-10 p-l-15 p-r-15" colspan="{{ $ctrl.columns.length + 1 }}">
-        <input type="text" class="form-control" placeholder="Search..."
+        <input type="text" class="form-control" placeholder="搜索..."
           ng-model="$ctrl.searchTerm" ng-model-options="{ allowInvalid: true, debounce: 200 }"
           ng-change="$ctrl.onSearchTermChanged()">
       </th>
