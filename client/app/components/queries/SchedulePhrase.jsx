@@ -22,20 +22,20 @@ export class SchedulePhrase extends React.Component {
   get content() {
     const { interval: seconds } = this.props.schedule || SchedulePhrase.defaultProps.schedule;
     if (!seconds) {
-      return ['Never'];
+      return ['从不'];
     }
     const humanized = durationHumanize(seconds, {
       omitSingleValueNumber: true,
     });
-    const short = `Every ${humanized}`;
-    let full = `Refreshes every ${humanized}`;
+    const short = `每 ${humanized}`;
+    let full = `刷新 每 ${humanized}`;
 
     const { time, day_of_week: dayOfWeek } = this.props.schedule;
     if (time) {
-      full += ` at ${localizeTime(time)}`;
+      full += ` 在 ${localizeTime(time)}`;
     }
     if (dayOfWeek) {
-      full += ` on ${dayOfWeek}`;
+      full += ` 在 ${dayOfWeek}`;
     }
 
     return [short, full];
@@ -43,7 +43,7 @@ export class SchedulePhrase extends React.Component {
 
   render() {
     if (this.props.isNew) {
-      return 'Never';
+      return '从不';
     }
 
     const [short, full] = this.content;

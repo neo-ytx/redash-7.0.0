@@ -1,31 +1,31 @@
 <div>
   <ul class="tab-nav">
     <li ng-class="{active: currentTab == 'general'}">
-      <a ng-click="changeTab('general')">General</a>
+      <a ng-click="changeTab('general')">总览</a>
     </li>
     <li ng-class="{active: currentTab == 'xAxis'}" ng-if="options.globalSeriesType != 'custom'">
-      <a ng-click="changeTab('xAxis')">X Axis</a>
+      <a ng-click="changeTab('xAxis')">X 轴</a>
     </li>
     <li ng-class="{active: currentTab == 'yAxis'}" ng-if="options.globalSeriesType != 'custom'">
-      <a ng-click="changeTab('yAxis')">Y Axis</a>
+      <a ng-click="changeTab('yAxis')">Y 轴</a>
     </li>
     <li ng-class="{active: currentTab == 'series'}" ng-if="options.globalSeriesType != 'custom'">
-      <a ng-click="changeTab('series')">Series</a>
+      <a ng-click="changeTab('series')">系列</a>
     </li>
     <li ng-class="{active: currentTab == 'colors'}" ng-if="options.globalSeriesType != 'custom'">
-      <a ng-click="changeTab('colors')">Colors</a>
+      <a ng-click="changeTab('colors')">配色</a>
     </li>
     <li ng-class="{active: currentTab == 'dataLabels'}" ng-if="options.globalSeriesType != 'custom'">
-      <a ng-click="changeTab('dataLabels')">Data Labels</a>
+      <a ng-click="changeTab('dataLabels')">数据标签</a>
     </li>
   </ul>
   <div ng-if="currentTab == 'general'" class="m-t-10 m-b-10">
     <div class="form-group">
-      <label class="control-label">Chart Type</label>
+      <label class="control-label">图标类别</label>
       <div ng-if="chartTypes">
         <!--the if is a weird workaround-->
         <ui-select ng-model="options.globalSeriesType" on-select="chartTypeChanged()">
-          <ui-select-match placeholder="Choose chart type...">
+          <ui-select-match placeholder="选择图标类别...">
             <div>
               <i class="fa fa-{{$select.selected.value.icon}}"></i>
               {{$select.selected.value.name}}
@@ -43,10 +43,10 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error': chartEditor.xAxisColumn.$invalid}">
-      <label class="control-label">X Column</label>
+      <label class="control-label">X 列</label>
 
       <ui-select name="xAxisColumn" required ng-model="form.xAxisColumn">
-        <ui-select-match placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.groupby">
           <span ng-bind-html="column | highlight: $select.search"></span>
           <span> </span>
@@ -57,10 +57,10 @@
 
     <!-- not using regular validation (chartEditor.yAxisColumns.$invalid) due to a bug in ui-select with multiple choices-->
     <div class="form-group" ng-class="{'has-error': !form.yAxisColumns || form.yAxisColumns.length == 0}">
-      <label class="control-label">Y Columns</label>
+      <label class="control-label">Y 列</label>
 
       <ui-select multiple name="yAxisColumns" required ng-model="form.yAxisColumns">
-        <ui-select-match placeholder="Choose columns...">{{$item}}</ui-select-match>
+        <ui-select-match placeholder="选择列...">{{$item}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.groupby | remove:form.xAxisColumn">
           <span ng-bind-html="column | highlight: $select.search"></span>
           <span> </span>
@@ -71,9 +71,9 @@
     </div>
 
     <div class="form-group" ng-if="['custom', 'heatmap'].indexOf(options.globalSeriesType) == -1">
-      <label class="control-label">Group by</label>
+      <label class="control-label">通过...分组</label>
       <ui-select name="groupby" ng-model="form.groupby" class="clearable">
-        <ui-select-match allow-clear="true" placeholder="Choose column...">
+        <ui-select-match allow-clear="true" placeholder="选择列...">
           {{$select.selected}}
         </ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.xAxisColumn">
@@ -85,10 +85,10 @@
     </div>
 
     <div class="form-group" ng-if="showSizeColumnPicker()">
-      <label class="control-label">Bubble size column</label>
+      <label class="control-label">气泡大小列</label>
 
       <ui-select name="sizeColumn" ng-model="form.sizeColumn">
-        <ui-select-match allow-clear="true" placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match allow-clear="true" placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.groupby">
           <span ng-bind-html="column | highlight: $select.search"></span>
           <span> </span>
@@ -98,10 +98,10 @@
     </div>
 
     <div class="form-group" ng-if="showZColumnPicker()">
-      <label class="control-label">Color Column</label>
+      <label class="control-label">配色列</label>
 
       <ui-select name="zValColumn" ng-model="form.zValColumn">
-        <ui-select-match allow-clear="true" placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match allow-clear="true" placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.groupby">
           <span ng-bind-html="column | highlight: $select.search"></span><span> </span>
           <small class="text-muted" ng-bind="columns[column].type"></small>
@@ -110,10 +110,10 @@
     </div>
 
     <div class="form-group" ng-if="['custom', 'heatmap'].indexOf(options.globalSeriesType) == -1">
-      <label class="control-label">Errors column</label>
+      <label class="control-label">错误列</label>
 
       <ui-select name="errorColumn" ng-model="form.errorColumn">
-        <ui-select-match allow-clear="true" placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match allow-clear="true" placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.groupby">
           <span ng-bind-html="column | highlight: $select.search"></span>
           <span> </span>
@@ -125,24 +125,24 @@
     <div class="checkbox" ng-if="['custom', 'heatmap'].indexOf(options.globalSeriesType) == -1">
       <label>
         <input type="checkbox" ng-model="options.legend.enabled">
-        <i class="input-helper"></i> Show Legend
+        <i class="input-helper"></i> 显示图例
       </label>
     </div>
 
     <div class="checkbox" ng-if="options.globalSeriesType == 'box'">
       <label>
         <input type="checkbox" ng-model="options.showpoints">
-        <i class="input-helper"></i> Show All Points
+        <i class="input-helper"></i> 显示所有点
       </label>
     </div>
 
     <div class="form-group" ng-if="['custom', 'heatmap'].indexOf(options.globalSeriesType) == -1">
-      <label class="control-label">Stacking</label>
+      <label class="control-label">堆叠</label>
 
       <div ng-if="stackingOptions">
         <!--the if is a weird workaround-->
         <ui-select ng-model="options.series.stacking" ng-disabled="['line', 'area', 'column'].indexOf(options.globalSeriesType) == -1">
-          <ui-select-match placeholder="Choose stacking...">{{ $select.selected.key }}</ui-select-match>
+          <ui-select-match placeholder="选择堆叠...">{{ $select.selected.key }}</ui-select-match>
           <ui-select-choices repeat="value.value as (key, value) in stackingOptions">
             <div ng-bind-html="value.key | highlight: $select.search"></div>
           </ui-select-choices>
@@ -151,7 +151,7 @@
 
       <div ng-if="['line', 'area', 'column'].indexOf(options.globalSeriesType) >= 0" class="checkbox">
         <label class="control-label">
-          <input type="checkbox" ng-model="options.series.percentValues"> Normalize values to percentage
+          <input type="checkbox" ng-model="options.series.percentValues"> 将值标准化为百分比
         </label>
       </div>
     </div>
@@ -159,7 +159,7 @@
 
   <div ng-if="options.globalSeriesType == 'custom'">
     <div class="form-group">
-      <label class="control-label">Custom code</label>
+      <label class="control-label">自定义代码</label>
       <textarea ng-model="options.customCode" class="form-control v-resizable" rows="10">
       </textarea>
     </div>
@@ -167,23 +167,23 @@
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="options.enableConsoleLogs">
-        <i class="input-helper"></i> Show errors in the console
+        <i class="input-helper"></i> 在控制台显示错误
       </label>
     </div>
 
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="options.autoRedraw">
-        <i class="input-helper"></i> Auto update graph
+        <i class="input-helper"></i> 自动更新图表
       </label>
     </div>
   </div>
 
   <div ng-if="currentTab == 'xAxis'" class="m-t-10 m-b-10">
     <div class="form-group">
-      <label class="control-label">Scale</label>
+      <label class="control-label">比例</label>
       <ui-select ng-model="options.xAxis.type">
-        <ui-select-match placeholder="Choose Scale...">{{$select.selected.label}}</ui-select-match>
+        <ui-select-match placeholder="选择比例...">{{$select.selected.label}}</ui-select-match>
         <ui-select-choices repeat="scaleType.value as scaleType in xAxisScales">
           <div ng-bind-html="scaleType.label | highlight: $select.search"></div>
         </ui-select-choices>
@@ -191,69 +191,69 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label">Name</label>
+      <label class="control-label">名称</label>
       <input ng-model="options.xAxis.title.text" type="text" class="form-control">
     </div>
 
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="options.sortX">
-        <i class="input-helper"></i> Sort Values
+        <i class="input-helper"></i> 排序值
       </label>
     </div>
 
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="options.reverseX">
-        <i class="input-helper"></i> Reverse Order
+        <i class="input-helper"></i> 倒序
       </label>
     </div>
 
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="options.xAxis.labels.enabled">
-        <i class="input-helper"></i> Show Labels
+        <i class="input-helper"></i> 显示标签
       </label>
     </div>
   </div>
 
   <div ng-if="currentTab == 'yAxis'" class="m-t-10 m-b-10">
     <div ng-repeat="yAxis in options.yAxis">
-      <h4>{{$index == 0 ? 'Left' : 'Right'}} Y Axis</h4>
+      <h4>{{$index == 0 ? 'Left' : 'Right'}} Y 轴</h4>
 
       <div class="form-group">
-        <label class="control-label">Scale</label>
+        <label class="control-label">比例</label>
         <ui-select ng-model="yAxis.type">
-          <ui-select-match placeholder="Choose Scale...">{{$select.selected | capitalize}}</ui-select-match>
+          <ui-select-match placeholder="选择比例...">{{$select.selected | capitalize}}</ui-select-match>
           <ui-select-choices repeat="scaleType in yAxisScales">
             <div ng-bind-html="scaleType | capitalize | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
       </div>
       <div class="form-group">
-        <label class="control-label">Name</label>
+        <label class="control-label">名称</label>
         <input ng-model="yAxis.title.text" type="text" class="form-control">
       </div>
       <div class="form-group">
-        <label class="control-label">Min Value</label>
-        <input ng-model="yAxis.rangeMin" type="number" step="any" placeholder="Auto" class="form-control">
+        <label class="control-label">最小值</label>
+        <input ng-model="yAxis.rangeMin" type="number" step="any" placeholder="自动" class="form-control">
       </div>
       <div class="form-group">
-        <label class="control-label">Max Value</label>
-        <input ng-model="yAxis.rangeMax" type="number" step="any" placeholder="Auto" class="form-control">
+        <label class="control-label">最大值</label>
+        <input ng-model="yAxis.rangeMax" type="number" step="any" placeholder="自动" class="form-control">
       </div>
 
       <div class="checkbox" ng-if="options.globalSeriesType == 'heatmap'">
         <label>
           <input type="checkbox" ng-model="options.sortY">
-          <i class="input-helper"></i> Sort Values
+          <i class="input-helper"></i> 排序值
         </label>
       </div>
 
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="options.reverseY">
-          <i class="input-helper"></i> Reverse Order
+          <i class="input-helper"></i> 倒序
         </label>
       </div>
 
@@ -263,11 +263,11 @@
   <div ng-if="currentTab == 'series'" class="m-t-10 m-b-10">
     <table class="table table-condensed col-table">
       <thead>
-        <th style="width: 1%;">zIndex</th>
-        <th ng-if="options.globalSeriesType != 'pie'">Left Y Axis</th>
-        <th ng-if="options.globalSeriesType != 'pie'">Right Y Axis</th>
-        <th>Label</th>
-        <th ng-if="options.globalSeriesType != 'pie'">Type</th>
+        <th style="width: 1%;">z索引</th>
+        <th ng-if="options.globalSeriesType != 'pie'">左 Y 轴</th>
+        <th ng-if="options.globalSeriesType != 'pie'">右 Y 轴</th>
+        <th>标签</th>
+        <th ng-if="options.globalSeriesType != 'pie'">类别</th>
       </thead>
       <tbody ui-sortable ng-model="form.seriesList">
         <tr ng-repeat="name in form.seriesList">
@@ -286,7 +286,7 @@
           </td>
           <td ng-if="options.globalSeriesType != 'pie'" style="padding: 3px; width: 105px;">
             <ui-select ng-model="options.seriesOptions[name].type">
-              <ui-select-match placeholder="Chart Type">
+              <ui-select-match placeholder="图表种类">
                 <div>
                   <i class="fa fa-{{$select.selected.value.icon}}"></i>
                   {{$select.selected.value.name}}
@@ -331,10 +331,10 @@
 
   <div ng-if="(currentTab == 'colors') && (options.globalSeriesType == 'heatmap')" class="m-t-10 m-b-10">
     <div class="form-group" ng-if="options.globalSeriesType == 'heatmap'">
-      <label class="control-label">Color Scheme</label>
+      <label class="control-label">配色方案</label>
 
       <ui-select ng-model="options.colorScheme">
-        <ui-select-match allow-clear="true" placeholder="Choose Color Scheme...">{{$select.selected | capitalize}}</ui-select-match>
+        <ui-select-match allow-clear="true" placeholder="选择配色方案...">{{$select.selected | capitalize}}</ui-select-match>
         <ui-select-choices repeat="value in colorScheme">
           <div ng-bind-html="value | highlight: $select.search"></div>
         </ui-select-choices>
@@ -344,7 +344,7 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group" ng-if="options.colorScheme == 'Custom...'">
-          <label class="control-label">Min Color</label>
+          <label class="control-label">最小颜色值</label>
           <ui-select ng-model="options.heatMinColor">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -358,7 +358,7 @@
       </div>
       <div class="col-xs-6">
         <div class="form-group" ng-if="options.colorScheme == 'Custom...'">
-          <label class="control-label">Max Color</label>
+          <label class="control-label">最大颜色值</label>
           <ui-select ng-model="options.heatMaxColor">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -399,12 +399,12 @@
   <div ng-if="currentTab == 'dataLabels'" class="m-t-10 m-b-10">
     <div ng-if="['line', 'area', 'column', 'scatter', 'pie', 'heatmap'].indexOf(options.globalSeriesType) >= 0" class="checkbox">
       <label>
-        <input type="checkbox" ng-model="options.showDataLabels"> Show Data Labels</label>
+        <input type="checkbox" ng-model="options.showDataLabels"> 显示数据标签</label>
     </div>
 
     <div class="form-group">
       <label for="chart-editor-number-format">
-        Number Values Format
+        数值格式化
         <span class="m-l-5" uib-popover-html="'Format <a href=&quot;https://redash.io/help/user-guide/visualizations/formatting-numbers&quot; target=&quot;_blank&quot;>specs.</a>'"
           popover-trigger="'click outsideClick'">
           <i class="fa fa-question-circle"></i>
@@ -415,7 +415,7 @@
 
     <div class="form-group">
       <label for="chart-editor-percent-format">
-        Percent Values Format
+        百分比格式化
         <span class="m-l-5" uib-popover-html="'Format <a href=&quot;https://redash.io/help/user-guide/visualizations/formatting-numbers&quot; target=&quot;_blank&quot;>specs.</a>'"
           popover-trigger="'click outsideClick'">
           <i class="fa fa-question-circle"></i>
@@ -426,7 +426,7 @@
 
     <div class="form-group">
       <label for="chart-editor-datetime-format">
-        Date/Time Values Format
+        时间/日期格式化
         <span class="m-l-5" uib-popover-html="'Format <a href=&quot;https://momentjs.com/docs/#/displaying/format/&quot; target=&quot;_blank&quot;>specs.</a>'"
           popover-trigger="'click outsideClick'">
           <i class="fa fa-question-circle"></i>
@@ -436,12 +436,11 @@
     </div>
 
     <div class="form-group">
-      <label for="chart-editor-text">
-        Data Labels
+      <label for="chart-editor-text">数据标签
         <i class="fa fa-question-circle m-l-5" uib-popover-html="templateHint" popover-trigger="'click outsideClick'" popover-placement="top-left"></i>
       </label>
       <input class="form-control" ng-model="options.textFormat" ng-model-options="{ allowInvalid: true, debounce: 200 }" id="chart-editor-text"
-        placeholder="(auto)">
+        placeholder="(自动)">
     </div>
   </div>
 </div>

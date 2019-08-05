@@ -33,10 +33,10 @@ function NameInput({ name, type, onChange, existingNames, setValidation }) {
   let validateStatus = '';
 
   if (!name) {
-    helpText = 'Choose a keyword for this parameter';
+    helpText = '为此参数选择关键字';
     setValidation(false);
   } else if (includes(existingNames, name)) {
-    helpText = 'Parameter with this name already exists';
+    helpText = '具有此名称的参数已存在';
     setValidation(false);
     validateStatus = 'error';
   } else {
@@ -56,7 +56,7 @@ function NameInput({ name, type, onChange, existingNames, setValidation }) {
   return (
     <Form.Item
       required
-      label="Keyword"
+      label="关键字"
       help={helpText}
       validateStatus={validateStatus}
       {...formItemProps}
@@ -126,13 +126,13 @@ function EditParameterSettingsDialog(props) {
   return (
     <Modal
       {...props.dialog.props}
-      title={isNew ? 'Add Parameter' : param.name}
+      title={isNew ? '增加参数' : param.name}
       width={600}
       footer={[(
-        <Button key="cancel" onClick={props.dialog.dismiss}>Cancel</Button>
+        <Button key="cancel" onClick={props.dialog.dismiss}>取消</Button>
       ), (
         <Button key="submit" htmlType="submit" disabled={!isFulfilled()} type="primary" form="paramForm">
-          {isNew ? 'Add Parameter' : 'OK'}
+          {isNew ? '增加参数' : '确定'}
         </Button>
       )]}
     >
@@ -146,30 +146,30 @@ function EditParameterSettingsDialog(props) {
             type={param.type}
           />
         )}
-        <Form.Item label="Title" {...formItemProps}>
+        <Form.Item label="标题" {...formItemProps}>
           <Input
             value={isNull(param.title) ? getDefaultTitle(param.name) : param.title}
             onChange={e => setParam({ ...param, title: e.target.value })}
           />
         </Form.Item>
-        <Form.Item label="Type" {...formItemProps}>
+        <Form.Item label="类别" {...formItemProps}>
           <Select value={param.type} onChange={type => setParam({ ...param, type })}>
-            <Option value="text">Text</Option>
-            <Option value="number">Number</Option>
-            <Option value="enum">Dropdown List</Option>
-            <Option value="query">Query Based Dropdown List</Option>
+            <Option value="text">文本</Option>
+            <Option value="number">数字</Option>
+            <Option value="enum">下拉列表</Option>
+            <Option value="query">基于下拉列表的查询</Option>
             <Option disabled key="dv1">
               <Divider className="select-option-divider" />
             </Option>
-            <Option value="date">Date</Option>
-            <Option value="datetime-local">Date and Time</Option>
-            <Option value="datetime-with-seconds">Date and Time (with seconds)</Option>
+            <Option value="date">日期</Option>
+            <Option value="datetime-local">日期和时间</Option>
+            <Option value="datetime-with-seconds">日期和时间（精确到秒）</Option>
             <Option disabled key="dv2">
               <Divider className="select-option-divider" />
             </Option>
-            <Option value="date-range">Date Range</Option>
-            <Option value="datetime-range">Date and Time Range</Option>
-            <Option value="datetime-range-with-seconds">Date and Time Range (with seconds)</Option>
+            <Option value="date-range">日期范围</Option>
+            <Option value="datetime-range">日期和时间范围</Option>
+            <Option value="datetime-range-with-seconds">日期和时间（精确到秒）的范围</Option>
           </Select>
         </Form.Item>
         {isTypeDate(param.type) && (
@@ -178,12 +178,12 @@ function EditParameterSettingsDialog(props) {
               defaultChecked={param.useCurrentDateTime}
               onChange={e => setParam({ ...param, useCurrentDateTime: e.target.checked })}
             >
-              Default to Today/Now if no other value is set
+              如果值没有设置，默认为现在。
             </Checkbox>
           </Form.Item>
         )}
         {param.type === 'enum' && (
-          <Form.Item label="Values" help="Dropdown list values (newline delimeted)" {...formItemProps}>
+          <Form.Item label="值" help="下拉列表值（换行符已删除）" {...formItemProps}>
             <Input.TextArea
               rows={3}
               value={param.enumOptions}
@@ -192,7 +192,7 @@ function EditParameterSettingsDialog(props) {
           </Form.Item>
         )}
         {param.type === 'query' && (
-          <Form.Item label="Query" help="Select query to load dropdown values from" {...formItemProps}>
+          <Form.Item label="查询" help="选择针对已加载下拉值的查询" {...formItemProps}>
             <QuerySelector
               selectedQuery={initialQuery}
               onChange={q => setParam({ ...param, queryId: q && q.id })}

@@ -39,7 +39,7 @@ class QueriesList extends React.Component {
     {
       key: 'favorites',
       href: 'queries/favorites',
-      title: '喜爱的查询',
+      title: '收藏的查询',
       icon: () => <Sidebar.MenuIcon icon="fa fa-star" />,
     },
     {
@@ -168,7 +168,7 @@ export default function init(ngModule) {
     },
     {
       path: '/queries/favorites',
-      title: '喜爱的查询',
+      title: '收藏的查询',
       key: 'favorites',
     },
     {

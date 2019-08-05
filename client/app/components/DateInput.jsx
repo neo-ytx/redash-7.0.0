@@ -20,7 +20,7 @@ export function DateInput({
       className={className}
       {...additionalAttributes}
       format={format}
-      placeholder="Select Date"
+      placeholder="选择日期"
       onChange={onSelect}
     />
   );

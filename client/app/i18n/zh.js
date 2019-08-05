@@ -2,7 +2,7 @@ const internationalization = {
   Dashboards: '仪表板',
   Dashboard: '仪表板',
   Create: '创建',
-  Queries: '查询',
+  Queries: '查询列表',
   Query: '查询',
   Alert: '警报',
   Alerts: '警报',

@@ -1,8 +1,8 @@
 <div class="schema-container" ng-if="$ctrl.schema">
   <div class="schema-control">
-    <input type="text" placeholder="Search schema..." class="form-control" ng-model="$ctrl.schemaFilter" ng-model-options="{ debounce: 500 }" ng-disabled="$ctrl.isEmpty()" ng-change="$ctrl.splitFilter($ctrl.schemaFilter);">
+    <input type="text" placeholder="搜索数据库..." class="form-control" ng-model="$ctrl.schemaFilter" ng-model-options="{ debounce: 500 }" ng-disabled="$ctrl.isEmpty()" ng-change="$ctrl.splitFilter($ctrl.schemaFilter);">
     <button class="btn btn-default"
-            title="Refresh Schema"
+            title="刷新数据库"
             ng-click="$ctrl.onRefresh()">
       <span class="zmdi zmdi-refresh"></span>
     </button>

@@ -1,19 +1,17 @@
 <div class="query-page-wrapper">
   <div class="container">
     <overlay ng-if="canCreateQuery === false && query.isNew()">
-      You don't have permission to create new queries on any of the data sources available to you. You can either
-      <a href="queries">browse existing queries</a>, or ask for additional permissions from your Redash admin.
+      您无权在可用的任何数据源上创建新查询。你可以
+      <a href="queries">浏览已存在的查询结果</a>，也可以向管理员请求更高的权限。
     </overlay>
     <overlay ng-if="noDataSources && currentUser.isAdmin">
-      Looks like no data sources were created yet (or none of them available to the group(s) you're member of). Please create one
-      first, and then start querying.
+      您尚未创建任何数据源（或者您所属的组中没有数据源可用）。请首先创建一个数据源，然后再开始查询。
       <br/>
-      <a href="data_sources/new" class="btn btn-primary">Create Data Source</a>
-      <a href="groups" class="btn btn-default">Manage Group Permissions</a>
+      <a href="data_sources/new" class="btn btn-primary">创建数据源</a>
+      <a href="groups" class="btn btn-default">管理组权限</a>
     </overlay>
     <overlay ng-if="noDataSources && !currentUser.isAdmin">
-      Looks like no data sources were created yet (or none of them available to the group(s) you're member of). Please ask your
-      Redash admin to create one first.
+      您尚未创建任何数据源（或者您所属的组中没有数据源可用）。请求您的管理员首先创建一个数据源再进行操作。
     </overlay>
 
     <alert-unsaved-changes ng-if="canEdit" is-dirty="isDirty"></alert-unsaved-changes>
@@ -35,15 +33,15 @@
 
           <div class="p-0 source-control text-right text-nowrap align-self-start m-t-5">
             <button class="btn btn-default btn-publish" ng-click="togglePublished()" ng-if="query.is_draft && query.id != undefined && (isQueryOwner || currentUser.hasPermission('admin'))">
-              <span class="fa fa-paper-plane"></span> Publish
+              <span class="fa fa-paper-plane"></span> 发布
             </button>
 
             <span ng-show="query.id && canViewSource">
               <a ng-show="!sourceMode" ng-href="{{query.getUrl(true, selectedTab)}}" class="btn btn-default btn--showhide">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Source</i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑查询语句</i>
               </a>
               <a ng-show="sourceMode" ng-href="{{query.getUrl(false, selectedTab)}}" class="btn btn-default btn--showhide">
-                <i class="fa fa-table" aria-hidden="true"></i> Show Data Only</i>
+                <i class="fa fa-table" aria-hidden="true"></i> 仅展示数据</i>
               </a>
             </span>
 
@@ -53,21 +51,21 @@
               </button>
               <ul class="dropdown-menu pull-right" uib-dropdown-menu>
                 <li ng-class="{'disabled': query.id === undefined || !canForkQuery() }">
-                  <a ng-click="duplicateQuery()"> Fork <i class="fa fa-external-link"></i></a>
+                  <a ng-click="duplicateQuery()"> 拷贝 <i class="fa fa-external-link"></i></a>
                 </li>
                 <li class="divider" ng-if="query.is_archived"></li>
                 <li ng-if="!query.is_archived && query.id != undefined && (isQueryOwner || currentUser.hasPermission('admin'))">
-                  <a ng-click="archiveQuery()">Archive</a>
+                  <a ng-click="archiveQuery()">归档</a>
                 </li>
                 <li ng-if="!query.is_archived && query.id != undefined && (isQueryOwner || currentUser.hasPermission('admin')) && showPermissionsControl">
-                  <a ng-click="showManagePermissionsModal()">Manage Permissions</a>
+                  <a ng-click="showManagePermissionsModal()">管理权限</a>
                 </li>
                 <li ng-if="!query.is_draft && query.id != undefined && (isQueryOwner || currentUser.hasPermission('admin'))">
-                  <a ng-click="togglePublished()">Unpublish</a>
+                  <a ng-click="togglePublished()">取消发布</a>
                 </li>
                 <li class="divider" ng-if="!query.is_archived"></li>
                 <li ng-if="query.id != undefined">
-                  <a ng-click="showApiKey()">Show API Key</a>
+                  <a ng-click="showApiKey()">显示 API Key</a>
                 </li>
               </ul>
             </div>
@@ -85,7 +83,7 @@
       <div class="editor__left__data-source">
         <ui-select ng-model="query.data_source_id" remove-selected="false" ng-disabled="!isQueryOwner || !sourceMode"
           on-select="updateDataSource()" data-test="SelectDataSource">
-          <ui-select-match placeholder="Select Data Source...">{{$select.selected.name}}</ui-select-match>
+          <ui-select-match placeholder="选择数据源...">{{$select.selected.name}}</ui-select-match>
           <ui-select-choices repeat="ds.id as ds in dataSources | filter:$select.search">
             {{ds.name}}
           </ui-select-choices>
@@ -98,7 +96,7 @@
       <div ng-if="!sourceMode" style="flex-grow: 1;">&nbsp;</div>
 
       <div class="query-metadata query-metadata--description" ng-if="!query.isNew()">
-        <edit-in-place is-editable="canEdit" on-done="saveDescription" editor="'textarea'" placeholder="'Add description'" ignore-blanks='false'
+        <edit-in-place is-editable="canEdit" on-done="saveDescription" editor="'textarea'" placeholder="'增加描述'" ignore-blanks='false'
           value="query.description" markdown="true">
         </edit-in-place>
       </div>
@@ -111,7 +109,7 @@
               <strong class="meta__name" ng-class="{'text-muted': query.user.is_disabled}">{{query.user.name}}</strong>
             </td>
             <td class="text-right">
-              created
+              创建于
               <strong>
                 <rd-time-ago value="query.created_at"></rd-time-ago>
               </strong>
@@ -123,7 +121,7 @@
               <strong class="meta__name" ng-class="{'text-muted': query.last_modified_by.is_disabled}">{{query.last_modified_by.name}}</strong>
             </td>
             <td class="text-right">
-              updated
+              更新于
               <strong>
                 <rd-time-ago value="query.updated_at"></rd-time-ago>
               </strong>
@@ -132,7 +130,7 @@
           <tr>
             <td class="p-t-15">
               <span class="query-metadata__property">
-                <span class="zmdi zmdi-refresh"></span> Refresh Schedule</span>
+                <span class="zmdi zmdi-refresh"></span> 刷新间隔</span>
             </td>
             <td class="p-t-15 text-right">
               <schedule-phrase ng-click="editSchedule()" is-link="true" schedule="query.schedule" is-new="query.isNew()" />
@@ -223,7 +221,7 @@
               <div ng-if="showDataset" class="flex-fill p-relative">
                 <div class="d-flex flex-column p-absolute static-position__mobile" style="left: 0; top: 0; right: 0; bottom: 0;">
                   <div class="p-10" ng-show="showLog">
-                    <p>Log Information:</p>
+                    <p>日志信息:</p>
                     <p ng-repeat="l in queryResult.getLog()">{{l}}</p>
                   </div>
                   <ul class="tab-nav">
@@ -235,7 +233,7 @@
                     </rd-tab>
                     <li class="rd-tab tab-new-vis">
                       <a ng-click="openVisualizationEditor()" class="btn btn-default" ng-if="canEdit">
-                        <i class="zmdi zmdi-plus"></i> New Visualization</a>
+                        <i class="zmdi zmdi-plus"></i> 新建可视化页面</a>
                     </li>
                   </ul>
                   <div ng-if="!query.visualizations.length" class="query__vis m-t-15 p-b-15 scrollbox">
@@ -255,7 +253,7 @@
       <div class="bottom-controller-container" ng-if="showDataset">
         <div class="bottom-controller">
 
-          <button class="m-r-5 btn btn-default btn-edit-visualisation" ng-click="openVisualizationEditor(selectedTab)" ng-if="!query.isNew() && canEdit"><span class="fa fa-edit"></span><span class="hidden-xs hidden-s hidden-m"> Edit Visualization</span></button>
+          <button class="m-r-5 btn btn-default btn-edit-visualisation" ng-click="openVisualizationEditor(selectedTab)" ng-if="!query.isNew() && canEdit"><span class="fa fa-edit"></span><span class="hidden-xs hidden-s hidden-m"> 编辑可视化页面</span></button>
 
           <div class="m-r-5 btn-group dropup" uib-dropdown>
             <button type="button" class="btn btn-default dropup-toggle" aria-haspopup="true"
@@ -265,22 +263,22 @@
             <ul class="dropdown-menu" uib-dropdown-menu>
               <li>
                 <a target="_self" ng-click="openAddToDashboardForm(selectedTab)" ng-if="!query.isNew() && (!query.is_draft || !query.is_archived)">
-                  <span class="fa fa-plus-circle"></span> Add to Dashboard
+                  <span class="fa fa-plus-circle"></span> 添加到仪表面板
                 </a>
               </li>
               <li>
                 <a ng-click="showEmbedDialog(query, selectedTab)" ng-if="!query.isNew()">
-                  <span class="zmdi zmdi-code"></span> Embed elsewhere
+                  <span class="zmdi zmdi-code"></span> 嵌入到其他页面
                 </a>
               </li>
               <li>
                 <a query-result-link target="_self" ng-disabled="queryExecuting || !queryResult.getData()">
-                  <span class="fa fa-file-o"></span> Download as CSV File
+                  <span class="fa fa-file-o"></span> 下载CSV文件
                 </a>
               </li>
               <li>
                 <a query-result-link file-type="xlsx" target="_self" ng-disabled="queryExecuting || !queryResult.getData()">
-                  <span class="fa fa-file-excel-o"></span> Download as Excel File
+                  <span class="fa fa-file-excel-o"></span> 下载Excel文件
                 </a>
               </li>
             </ul>
@@ -289,21 +287,21 @@
           <span class="query-metadata__bottom" ng-if="queryResult.getData()">
             <span class="query-metadata__property">
               <strong>{{queryResult.getData().length}}</strong>
-              <ng-pluralize count="queryResult.getData().length" when="{'0': ' rows', 'one': ' row', 'other': ' rows'}"></ng-pluralize>
+              <ng-pluralize count="queryResult.getData().length" when="{'0': ' 行', 'one': ' 行', 'other': ' 行'}"></ng-pluralize>
             </span>
             <span class="query-metadata__property">
               <strong ng-show="!queryExecuting">{{queryResult.getRuntime() | durationHumanize}}</strong>
-              <span ng-show="queryExecuting">Running&hellip;</span>
-              <span class="hidden-xs">runtime</span>
+              <span ng-show="queryExecuting">正在查询&hellip;</span>
+              <span class="hidden-xs">运行时间</span>
             </span>
-            <span class="query-metadata__property" ng-if="queryResult.query_result.data.metadata.data_scanned">Data Scanned
+            <span class="query-metadata__property" ng-if="queryResult.query_result.data.metadata.data_scanned">数据扫描
               <strong>{{ queryResult.query_result.data.metadata.data_scanned | prettySize}}</strong>
             </span>
           </span>
 
           <div>
             <span class="query-metadata__property hidden-xs">
-              <span class="hidden-xs">Updated </span>
+              <span class="hidden-xs">更新于 </span>
               <rd-time-ago value="queryResult.query_result.retrieved_at"></rd-time-ago>
             </span>
 

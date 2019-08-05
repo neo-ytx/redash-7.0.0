@@ -81,7 +81,7 @@ const EditVisualizationDialog = {
 
     this.closeDialog = () => {
       if (this.visForm.$dirty) {
-        if ($window.confirm('Are you sure you want to close the editor without saving?')) {
+        if ($window.confirm('您确定要在不保存的情况下关闭编辑器吗？')) {
           this.close();
         }
       } else {

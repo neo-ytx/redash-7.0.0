@@ -260,13 +260,13 @@ class QueryEditor extends React.Component {
             <div className="form-inline d-flex">
               <Tooltip
                 placement="top"
-                title={<span>Add New Parameter (<i>{modKey} + P</i>)</span>}
+                title={<span>增加新的参数 (<i>{modKey} + P</i>)</span>}
               >
                 <button type="button" className="btn btn-default m-r-5" onClick={this.props.addNewParameter}>
                   &#123;&#123;&nbsp;&#125;&#125;
                 </button>
               </Tooltip>
-              <Tooltip placement="top" title="Format Query">
+              <Tooltip placement="top" title="格式化查询">
                 <button type="button" className="btn btn-default m-r-5" onClick={this.formatQuery}>
                   <span className="zmdi zmdi-format-indent-increase" />
                 </button>
@@ -291,7 +291,7 @@ class QueryEditor extends React.Component {
                 <Tooltip placement="top" title={modKey + ' + S'}>
                   <button type="button" className="btn btn-default m-l-5" onClick={this.props.saveQuery} title="Save">
                     <span className="fa fa-floppy-o" />
-                    <span className="hidden-xs m-l-5">Save</span>
+                    <span className="hidden-xs m-l-5">保存</span>
                     {this.props.isDirty ? '*' : null}
                   </button>
                 </Tooltip>
@@ -312,7 +312,7 @@ class QueryEditor extends React.Component {
                   data-test="ExecuteButton"
                 >
                   <span className="zmdi zmdi-play" />
-                  <span className="hidden-xs m-l-5">{ (this.state.selectedQueryText == null) ? 'Execute' : 'Execute Selected' }</span>
+                  <span className="hidden-xs m-l-5">{ (this.state.selectedQueryText == null) ? '执行' : '执行所选择的' }</span>
                 </button>
               </Tooltip>
             </div>

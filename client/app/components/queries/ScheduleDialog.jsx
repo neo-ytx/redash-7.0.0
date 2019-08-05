@@ -7,8 +7,11 @@ import Select from 'antd/lib/select';
 import Radio from 'antd/lib/radio';
 import { capitalize, clone, isEqual } from 'lodash';
 import moment from 'moment';
+import 'moment/locale/zh-cn';
 import { secondsToInterval, durationHumanize, pluralize, IntervalEnum, localizeTime } from '@/filters';
 import { wrap as wrapDialog, DialogPropType } from '@/components/DialogWrapper';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/es/locale-provider/zh_CN';
 import { RefreshScheduleType, RefreshScheduleDefault, Moment } from '../proptypes';
 
 import './ScheduleDialog.css';
@@ -18,6 +21,7 @@ const WEEKDAYS_FULL = moment.weekdays();
 const DATE_FORMAT = 'YYYY-MM-DD';
 const HOUR_FORMAT = 'HH:mm';
 const { Option, OptGroup } = Select;
+moment.locale('zh-cn');
 
 export function TimeEditor(props) {
   const [time, setTime] = useState(props.defaultValue);
@@ -200,73 +204,75 @@ class ScheduleDialog extends React.Component {
     } = this.state;
 
     return (
-      <Modal {...dialog.props} title="Refresh Schedule" className="schedule" onOk={() => this.save()}>
-        <div className="schedule-component">
-          <h5>Refresh every</h5>
-          <div data-testid="interval">
-            <Select className="input" value={seconds} onChange={this.setInterval} dropdownMatchSelectWidth={false}>
-              <Option value={null} key="never">
-                Never
-              </Option>
-              {Object.keys(this.intervals).map(int => (
-                <OptGroup label={capitalize(pluralize(int))} key={int}>
-                  {this.intervals[int].map(([cnt, secs]) => (
-                    <Option value={secs} key={cnt}>
-                      {durationHumanize(secs)}
-                    </Option>
-                  ))}
-                </OptGroup>
-              ))}
-            </Select>
-          </div>
-        </div>
-        {[IntervalEnum.DAYS, IntervalEnum.WEEKS].indexOf(interval) !== -1 ? (
+      <LocaleProvider locale={zhCN}>
+        <Modal {...dialog.props} title="刷新时间" className="schedule" onOk={() => this.save()}>
           <div className="schedule-component">
-            <h5>On time</h5>
-            <div data-testid="time">
-              <TimeEditor
-                defaultValue={hour ? moment().hour(hour).minute(minute) : null}
-                onChange={this.setTime}
-              />
-            </div>
-          </div>
-        ) : null}
-        {IntervalEnum.WEEKS === interval ? (
-          <div className="schedule-component">
-            <h5>On day</h5>
-            <div data-testid="weekday">
-              <Radio.Group size="medium" defaultValue={this.state.dayOfWeek} onChange={this.setWeekday}>
-                {WEEKDAYS_SHORT.map(day => (
-                  <Radio.Button value={day} key={day} className="input">
-                    {day[0]}
-                  </Radio.Button>
+            <h5>刷新间隔</h5>
+            <div data-testid="interval">
+              <Select className="input" value={seconds} onChange={this.setInterval} dropdownMatchSelectWidth={false}>
+                <Option value={null} key="never">
+                从不
+                </Option>
+                {Object.keys(this.intervals).map(int => (
+                  <OptGroup label={capitalize(pluralize(int))} key={int}>
+                    {this.intervals[int].map(([cnt, secs]) => (
+                      <Option value={secs} key={cnt}>
+                        {durationHumanize(secs)}
+                      </Option>
+                    ))}
+                  </OptGroup>
                 ))}
-              </Radio.Group>
+              </Select>
             </div>
           </div>
-        ) : null}
-        {interval !== IntervalEnum.NEVER ? (
-          <div className="schedule-component">
-            <h5>Ends</h5>
-            <div className="ends" data-testid="ends">
-              <Radio.Group size="medium" value={!!until} onChange={this.setUntilToggle}>
-                <Radio value={false}>Never</Radio>
-                <Radio value>On</Radio>
-              </Radio.Group>
-              {until ? (
-                <DatePicker
-                  size="small"
-                  className="datepicker"
-                  value={moment(until)}
-                  allowClear={false}
-                  format={DATE_FORMAT}
-                  onChange={this.setScheduleUntil}
+          {[IntervalEnum.DAYS, IntervalEnum.WEEKS].indexOf(interval) !== -1 ? (
+            <div className="schedule-component">
+              <h5>刷新时刻</h5>
+              <div data-testid="time">
+                <TimeEditor
+                  defaultValue={hour ? moment().hour(hour).minute(minute) : null}
+                  onChange={this.setTime}
                 />
-              ) : null}
+              </div>
             </div>
-          </div>
-        ) : null}
-      </Modal>
+          ) : null}
+          {IntervalEnum.WEEKS === interval ? (
+            <div className="schedule-component">
+              <h5>刷新日期</h5>
+              <div data-testid="weekday">
+                <Radio.Group size="medium" defaultValue={this.state.dayOfWeek} onChange={this.setWeekday}>
+                  {WEEKDAYS_SHORT.map(day => (
+                    <Radio.Button value={day} key={day} className="input">
+                      {day[0]}
+                    </Radio.Button>
+                  ))}
+                </Radio.Group>
+              </div>
+            </div>
+          ) : null}
+          {interval !== IntervalEnum.NEVER ? (
+            <div className="schedule-component">
+              <h5>结束日期</h5>
+              <div className="ends" data-testid="ends">
+                <Radio.Group size="medium" value={!!until} onChange={this.setUntilToggle}>
+                  <Radio value={false}>从不</Radio>
+                  <Radio value>On</Radio>
+                </Radio.Group>
+                {until ? (
+                  <DatePicker
+                    size="small"
+                    className="datepicker"
+                    value={moment(until)}
+                    allowClear={false}
+                    format={DATE_FORMAT}
+                    onChange={this.setScheduleUntil}
+                  />
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+        </Modal>
+      </LocaleProvider>
     );
   }
 }

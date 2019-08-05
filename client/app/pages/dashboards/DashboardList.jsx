@@ -37,7 +37,7 @@ class DashboardList extends React.Component {
     {
       key: 'favorites',
       href: 'dashboards/favorites',
-      title: '喜爱的仪表板',
+      title: '收藏的仪表板',
       icon: () => <Sidebar.MenuIcon icon="fa fa-star" />,
     },
   ];
@@ -150,7 +150,7 @@ export default function init(ngModule) {
     },
     {
       path: '/dashboards/favorites',
-      title: '喜爱的仪表板',
+      title: '收藏的仪表板',
       key: 'favorites',
     },
   ], {
