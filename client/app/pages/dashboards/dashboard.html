@@ -19,25 +19,25 @@
             <button type="button" class="btn btn-primary btn-sm"
               ng-disabled="$ctrl.isGridDisabled"
               ng-click="$ctrl.editLayout(false, true)" ng-if="$ctrl.layoutEditing">
-              <i class="zmdi zmdi-check"></i> Apply Changes
+              <i class="zmdi zmdi-check"></i> 应用更改
             </button>
 
             <button type="button" class="btn btn-default btn-sm"
               ng-disabled="$ctrl.isGridDisabled"
               ng-click="$ctrl.editLayout(false, false)" ng-if="$ctrl.layoutEditing">
-              <i class="zmdi zmdi-close"></i> Cancel
+              <i class="zmdi zmdi-close"></i> 取消
             </button>
           </div>
 
           <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.togglePublished()" tooltip="Publish Dashboard" ng-if="$ctrl.dashboard.is_draft && !$ctrl.layoutEditing">
-            <span class="fa fa-paper-plane"></span> Publish
+            <span class="fa fa-paper-plane"></span> 发布
           </button>
 
           <div class="btn-group" uib-dropdown ng-if="!$ctrl.layoutEditing">
             <button id="split-button" type="button"
                     ng-class="{'btn-default btn-sm': $ctrl.refreshRate === null,'btn-primary btn-sm':$ctrl.refreshRate !== null}"
                     class="btn btn-sm" ng-click="$ctrl.refreshDashboard()">
-              <i class="zmdi zmdi-refresh"></i> {{$ctrl.refreshRate === null ? 'Refresh' : $ctrl.refreshRate.name}}
+              <i class="zmdi zmdi-refresh"></i> {{$ctrl.refreshRate === null ? '刷新' : $ctrl.refreshRate.name}}
             </button>
             <button type="button" class="btn hidden-xs" uib-dropdown-toggle
                     ng-class="{'btn-default btn-sm': $ctrl.refreshRate === null,'btn-primary btn-sm':$ctrl.refreshRate !== null}">
@@ -66,10 +66,10 @@
           <span class="zmdi zmdi-more"></span>
         </button>
         <ul class="dropdown-menu pull-right" uib-dropdown-menu>
-          <li ng-if="!$ctrl.dashboard.is_archived" ng-class="{hidden: $ctrl.isGridDisabled}"><a ng-click="$ctrl.editLayout(true)">Edit</a></li>
+          <li ng-if="!$ctrl.dashboard.is_archived" ng-class="{hidden: $ctrl.isGridDisabled}"><a ng-click="$ctrl.editLayout(true)">编辑</a></li>
           <li ng-if="$ctrl.showPermissionsControl"><a ng-click="$ctrl.showManagePermissionsModal()">Manage Permissions</a></li>
-          <li ng-if="!$ctrl.dashboard.is_draft"><a ng-click="$ctrl.togglePublished()">Unpublish</a></li>
-          <li ng-if="!$ctrl.dashboard.is_archived"><a ng-click="$ctrl.archiveDashboard()">Archive</a></li>
+          <li ng-if="!$ctrl.dashboard.is_draft"><a ng-click="$ctrl.togglePublished()">取消发布</a></li>
+          <li ng-if="!$ctrl.dashboard.is_archived"><a ng-click="$ctrl.archiveDashboard()">归档</a></li>
         </ul>
       </div>
     </div>
@@ -78,7 +78,7 @@
   <div class="m-b-10 p-15 bg-white tiled" ng-if="$ctrl.layoutEditing">
     <label>
         <input name="input" type="checkbox" ng-model="$ctrl.dashboard.dashboard_filters_enabled" ng-change="$ctrl.updateDashboardFiltersState()">
-        Use Dashboard Level Filters
+        使用仪表板级别过滤器
     </label>
   </div>
 
@@ -107,11 +107,11 @@
   <div class="add-widget-container" ng-if="$ctrl.layoutEditing">
     <h2>
       <i class="zmdi zmdi-widgets"></i>
-      <span class="hidden-xs hidden-sm">Widgets are individual query visualizations or text boxes you can place on your dashboard in various arrangements.</span>
+      <span class="hidden-xs hidden-sm">窗口组件是单个查询的可视化或文本框，您可以根据您的不同安排放置在仪表板上。</span>
     </h2>
     <div>
-      <a class="btn btn-default" ng-click="$ctrl.showAddTextboxDialog()">Add Textbox</a>
-      <a class="btn btn-primary m-l-10" ng-click="$ctrl.showAddWidgetDialog()">Add Widget</a>
+      <a class="btn btn-default" ng-click="$ctrl.showAddTextboxDialog()">添加文本框</a>
+      <a class="btn btn-primary m-l-10" ng-click="$ctrl.showAddWidgetDialog()">添加组件</a>
     </div>
   </div>
 </div>
