@@ -65,7 +65,7 @@ export default function init(ngModule) {
   return {
     '/query_snippets/:snippetId': {
       template: '<snippet-page></snippet-page>',
-      title: '所有查询片段',
+      title: '所有查询代码段',
     },
   };
 }

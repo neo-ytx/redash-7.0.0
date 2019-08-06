@@ -12,7 +12,7 @@ function SnippetsCtrl($location, currentUser, QuerySnippet) {
 export default function init(ngModule) {
   settingsMenu.add({
     permission: 'create_query',
-    title: '所有查询片段',
+    title: '所有查询代码段',
     path: 'query_snippets',
     order: 5,
   });
@@ -25,7 +25,7 @@ export default function init(ngModule) {
   return {
     '/query_snippets': {
       template: '<snippets-list-page></snippets-list-page>',
-      title: '所有查询片段',
+      title: '所有查询代码段',
     },
   };
 }

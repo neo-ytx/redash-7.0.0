@@ -41,7 +41,7 @@ export const DynamicForm = Form.create()(class DynamicForm extends React.Compone
     actions: [],
     feedbackIcons: false,
     hideSubmitButton: false,
-    saveText: 'Save',
+    saveText: '保存',
     onSubmit: () => {},
   };
 

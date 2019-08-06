@@ -350,8 +350,8 @@ class MappingEditor extends React.Component {
           inputError={inputError}
         />
         <footer>
-          <Button onClick={this.hide}>Cancel</Button>
-          <Button onClick={this.save} disabled={!!inputError} type="primary">OK</Button>
+          <Button onClick={this.hide}>取消</Button>
+          <Button onClick={this.save} disabled={!!inputError} type="primary">确定</Button>
         </footer>
       </div>
     );
