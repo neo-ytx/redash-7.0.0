@@ -1,27 +1,27 @@
 <div>
   <ul class="tab-nav">
     <li ng-class="{active: currentTab == 'general'}">
-      <a ng-click="changeTab('general')">General</a>
+      <a ng-click="changeTab('general')">总览</a>
     </li>
     <li ng-class="{active: currentTab == 'colors'}">
-      <a ng-click="changeTab('colors')">Colors</a>
+      <a ng-click="changeTab('colors')">配色</a>
     </li>
     <li ng-class="{active: currentTab == 'bounds'}">
-      <a ng-click="changeTab('bounds')">Bounds</a>
+      <a ng-click="changeTab('bounds')">界限</a>
     </li>
   </ul>
   <div ng-if="currentTab == 'general'" class="m-t-10 m-b-10">
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Country code column</label>
+          <label>国家代码列</label>
           <select ng-options="name for name in queryResult.getColumnNames()"
             ng-model="options.countryCodeColumn" class="form-control"></select>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Country code type</label>
+          <label>城市代码列</label>
           <select ng-options="key as value for (key, value) in countryCodeTypes"
             ng-model="options.countryCodeType" class="form-control"></select>
         </div>
@@ -31,7 +31,7 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Value column</label>
+          <label>数值列</label>
           <select ng-options="name for name in queryResult.getColumnNames()"
             ng-model="options.valueColumn" class="form-control"></select>
         </div>
@@ -40,7 +40,7 @@
       <div class="col-xs-6">
         <div class="form-group">
           <label for="legend-value-format">
-            Value format
+            数值格式
             <span class="m-l-5"
               uib-popover-html="'Format <a href=&quot;https://redash.io/help/user-guide/visualizations/formatting-numbers&quot; target=&quot;_blank&quot;>specs.</a>'"
               popover-trigger="'click outsideClick'"><i class="fa fa-question-circle"></i></span>
@@ -52,7 +52,7 @@
 
       <div class="col-xs-6">
         <div class="form-group">
-          <label for="legend-value-placeholder">Value placeholder</label>
+          <label for="legend-value-placeholder">数值占位符</label>
           <input class="form-control" id="legend-value-placeholder"
             ng-model="options.noValuePlaceholder" ng-model-options="{ allowInvalid: true, debounce: 200 }">
         </div>
@@ -60,12 +60,12 @@
     </div>
 
     <div class="form-group">
-      <label><input type="checkbox" ng-model="options.legend.visible"> Show legend</label>
+      <label><input type="checkbox" ng-model="options.legend.visible"> 显示图例</label>
     </div>
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <label for="legend-position">Legend position</label>
+          <label for="legend-position">图例位置</label>
           <select class="form-control" id="legend-position"
             ng-options="key as value for (key, value) in legendPositions"
             ng-model="options.legend.position"
@@ -75,7 +75,7 @@
       </div>
       <div class="col-xs-6">
         <div class="form-group">
-          <label for="legend-position">Legend text alignment</label>
+          <label for="legend-position">图例文本对齐方式</label>
           <div class="btn-group d-flex">
             <button type="button" class="btn btn-default btn-md flex-fill"
               ng-click="options.legend.alignText = 'left'"
@@ -91,17 +91,17 @@
       </div>
     </div>
 
-    <label><input type="checkbox" ng-model="options.tooltip.enabled"> Show tooltip</label>
+    <label><input type="checkbox" ng-model="options.tooltip.enabled"> 显示提示</label>
     <div class="form-group">
-      <label for="tooltip-template">Tooltip template</label>
+      <label for="tooltip-template">提示模板</label>
       <input class="form-control" id="tooltip-template"
         ng-model="options.tooltip.template" ng-model-options="{ allowInvalid: true, debounce: 200 }"
         ng-disabled="!options.tooltip.enabled">
     </div>
 
-    <label><input type="checkbox" ng-model="options.popup.enabled"> Show popup</label>
+    <label><input type="checkbox" ng-model="options.popup.enabled"> 显示弹出式菜单</label>
     <div class="form-group">
-      <label for="popup-template">Popup template</label>
+      <label for="popup-template">弹出式菜单模板</label>
       <textarea class="form-control resize-vertical" id="popup-template" rows="3"
         ng-model="options.popup.template" ng-model-options="{ allowInvalid: true, debounce: 200 }"
         ng-disabled="!options.popup.enabled"></textarea>
@@ -111,7 +111,7 @@
       <label class="ui-sortable-bypass text-muted" style="font-weight: normal; cursor: pointer;"
         uib-popover-html="templateHint"
         popover-trigger="'click outsideClick'" popover-placement="top-left">
-        Format specs <i class="fa fa-question-circle m-l-5"></i>
+        格式规范 <i class="fa fa-question-circle m-l-5"></i>
       </label>
     </div>
   </div>
@@ -120,14 +120,14 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Steps</label>
+          <label>步骤</label>
           <input type="number" min="3" max="11" class="form-control"
             ng-model="options.steps">
         </div>
       </div>
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Clustering mode</label>
+          <label>聚类模式</label>
           <select ng-options="key as value for (key, value) in clusteringModes"
             ng-model="options.clusteringMode" class="form-control"></select>
         </div>
@@ -137,7 +137,7 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Min color</label>
+          <label>颜色最小值</label>
           <ui-select ng-model="options.colors.min">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -153,7 +153,7 @@
 
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Max color</label>
+          <label>颜色最大值</label>
           <ui-select ng-model="options.colors.max">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -169,7 +169,7 @@
 
       <div class="col-xs-6">
         <div class="form-group">
-          <label>No value color</label>
+          <label>无值颜色</label>
           <ui-select ng-model="options.colors.noValue">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -187,7 +187,7 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Background color</label>
+          <label>背景颜色</label>
           <ui-select ng-model="options.colors.background">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -203,7 +203,7 @@
 
       <div class="col-xs-6">
         <div class="form-group">
-          <label>Borders color</label>
+          <label>边框颜色</label>
           <ui-select ng-model="options.colors.borders">
             <ui-select-match>
               <color-box color="$select.selected.value"></color-box>
@@ -221,7 +221,7 @@
 
   <div ng-if="currentTab == 'bounds'" class="m-t-10 m-b-10">
     <div class="form-group">
-      <label>North-East latitude and longitude</label>
+      <label>东北经纬度</label>
       <div class="row">
         <div class="col-xs-6">
           <input class="form-control" type="text"
@@ -235,7 +235,7 @@
     </div>
 
     <div class="form-group">
-      <label>South-West latitude and longitude</label>
+      <label>西南经纬度</label>
       <div class="row">
         <div class="col-xs-6">
           <input class="form-control" type="text"

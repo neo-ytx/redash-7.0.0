@@ -7,9 +7,9 @@
 
   <div ng-show="currentTab == 'general'" class="m-t-10 m-b-10">
     <div class="form-group">
-      <label class="control-label">Latitude Column Name</label>
+      <label class="control-label">纬度列名称</label>
       <ui-select name="form-control" required ng-model="visualization.options.latColName">
-        <ui-select-match placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:visualization.options.classify | remove:visualization.options.lonColName">
           <span ng-bind-html="column | highlight: $select.search"></span><span> </span>
           <small class="text-muted" ng-bind="columns[column].type"></small>
@@ -18,9 +18,9 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label">Longitude Column Name</label>
+      <label class="control-label">经度列名称</label>
       <ui-select name="form-control" required ng-model="visualization.options.lonColName">
-        <ui-select-match placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:visualization.options.classify | remove:visualization.options.latColName">
           <span ng-bind-html="column | highlight: $select.search"></span><span> </span>
           <small class="text-muted" ng-bind="columns[column].type"></small>
@@ -29,9 +29,9 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label">Group By</label>
+      <label class="control-label">通过...分组</label>
       <ui-select name="form-control" required ng-model="visualization.options.classify">
-        <ui-select-match placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match placeholder="选择列...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in classify_columns | remove:visualization.options.lonColName | remove:visualization.options.latColName">
           <span ng-bind-html="column | highlight: $select.search"></span><span> </span>
           <small class="text-muted" ng-bind="columns[column].type"></small>
@@ -43,8 +43,8 @@
   <div ng-show="currentTab == 'groups'" class="m-b-10">
     <table class="table table-condensed col-table">
       <thead>
-      <th>Name</th>
-      <th>Color</th>
+      <th>名字</th>
+      <th>颜色</th>
       </thead>
       <tbody>
       <tr ng-repeat="(name, options) in visualization.options.groups">
@@ -61,12 +61,12 @@
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="visualization.options.clusterMarkers">
-        <i class="input-helper"></i> Cluster Markers
+        <i class="input-helper"></i> 集群标记
       </label>
     </div>
 
     <div class="form-group">
-      <label class="control-label">Map Tiles</label>
+      <label class="control-label">地图图像块</label>
       <select ng-options="tile.url as tile.name for tile in mapTiles"
         ng-model="visualization.options.mapTileUrl" class="form-control"></select>
     </div>
