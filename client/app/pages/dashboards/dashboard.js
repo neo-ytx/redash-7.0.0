@@ -59,7 +59,7 @@ function DashboardCtrl(
       .all(_.map(widgets, widget => widget.save()))
       .then(() => {
         if (showMessages) {
-          toastr.success('Changes saved.');
+          toastr.success('更改已保存。');
         }
         // Update original widgets positions
         _.each(widgets, (widget) => {
@@ -68,7 +68,7 @@ function DashboardCtrl(
       })
       .catch(() => {
         if (showMessages) {
-          toastr.error('Error saving changes.');
+          toastr.error('保存更改时出错。');
         }
       })
       .finally(() => {

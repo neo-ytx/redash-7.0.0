@@ -65,9 +65,9 @@ export default class UserEdit extends React.Component {
     };
 
     Modal.confirm({
-      title: 'Regenerate API Key',
-      content: 'Are you sure you want to regenerate?',
-      okText: 'Regenerate',
+      title: '重新生成API密钥',
+      content: '确认重新生成API密钥吗？',
+      okText: '重新生成',
       onOk: doRegenerate,
       maskClosable: true,
       autoFocusButton: null,
@@ -95,10 +95,10 @@ export default class UserEdit extends React.Component {
     };
 
     User.save(data, (user) => {
-      successCallback('Saved.');
+      successCallback('已保存。');
       this.setState({ user: User.convertUserInfo(user) });
     }, (error = {}) => {
-      errorCallback(error.data && error.data.message || 'Failed saving.');
+      errorCallback(error.data && error.data.message || '保存失败。');
     });
   };
 

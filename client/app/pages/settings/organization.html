@@ -16,7 +16,7 @@
 
                 <label>
                     <input name="input" type="checkbox" ng-model="$ctrl.settings.feature_show_permissions_control" ng-change="$ctrl.update('feature_show_permissions_control')"
-                        accesskey="tab"> Enable experimental multiple owners support
+                        accesskey="tab"> 启用实验性多用户支持
                 </label>
             </p>
             <hr>
@@ -24,15 +24,15 @@
             <p>
                 <label>
                     <input name="input" type="checkbox" ng-model="$ctrl.settings.auth_password_login_enabled" ng-change="$ctrl.update('auth_password_login_enabled')"
-                        accesskey="tab" ng-disabled="$ctrl.disablePasswordLoginToggle()"> Password Login Enabled
-                    <span uib-popover="Password login can be disabled only if another login method is enabled." popover-trigger="'mouseenter'"
+                        accesskey="tab" ng-disabled="$ctrl.disablePasswordLoginToggle()"> 密码登录已启用
+                    <span uib-popover="只有启用了其他登录方法，才能禁用密码登录。" popover-trigger="'mouseenter'"
                         ng-if="$ctrl.disablePasswordLoginToggle()">
                         <i class="fa fa-question-circle"></i>
                     </span>
                 </label>
 
                 <div class="callout callout-warning" ng-if="!$ctrl.settings.auth_password_login_enabled">
-                    Password based login is currently disabled and users will be able to login only with the enabled SSO options.
+                基于密码的登录目前已禁用，用户只能使用启用的SSO选项登录。
                 </div>
             </p>
 
@@ -60,7 +60,7 @@
             <p>
                 <label>
                     <input name="input" type="checkbox" ng-model="$ctrl.settings.auth_saml_enabled" ng-change="$ctrl.update('auth_saml_enabled')"
-                        accesskey="tab"> SAML Enabled
+                        accesskey="tab"> SAML已启用
                 </label>
 
                 <div ng-show="$ctrl.settings.auth_saml_enabled">

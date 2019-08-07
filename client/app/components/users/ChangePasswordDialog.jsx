@@ -110,14 +110,14 @@ class ChangePasswordDialog extends React.Component {
         {...dialog.props}
         okButtonProps={{ loading: updatingPassword }}
         onOk={this.updatePassword}
-        title="Change Password"
+        title="更改密码"
       >
         <Form layout="vertical">
           <Form.Item
             {...formItemProps}
             validateStatus={currentPassword.touched && currentPassword.error ? 'error' : null}
             help={currentPassword.touched ? currentPassword.error : null}
-            label="Current Password"
+            label="当前密码"
           >
             <Input.Password {...inputProps} name="currentPassword" data-test="CurrentPassword" autoFocus />
           </Form.Item>
@@ -125,7 +125,7 @@ class ChangePasswordDialog extends React.Component {
             {...formItemProps}
             validateStatus={newPassword.touched && newPassword.error ? 'error' : null}
             help={newPassword.touched ? newPassword.error : null}
-            label="New Password"
+            label="新密码"
           >
             <Input.Password {...inputProps} name="newPassword" data-test="NewPassword" />
           </Form.Item>
@@ -133,7 +133,7 @@ class ChangePasswordDialog extends React.Component {
             {...formItemProps}
             validateStatus={repeatPassword.touched && repeatPassword.error ? 'error' : null}
             help={repeatPassword.touched ? repeatPassword.error : null}
-            label="Repeat New Password"
+            label="再次输入新密码"
           >
             <Input.Password {...inputProps} name="repeatPassword" data-test="RepeatPassword" />
           </Form.Item>

@@ -183,11 +183,11 @@ class GroupDataSources extends React.Component {
             {!controller.isLoaded && <LoadingState className="" />}
             {controller.isLoaded && controller.isEmpty && (
               <div className="text-center">
-                There are no data sources in this group yet.
+                该组中还没有数据源。
                 {currentUser.isAdmin && (
                   <div className="m-t-5">
-                    <a href="javascript:void(0)" onClick={this.addDataSources}>Click here</a>
-                    {' '} to add data sources.
+                    <a href="javascript:void(0)" onClick={this.addDataSources}>点击此处</a>
+                    {' '} 以添加数据源。
                   </div>
                 )}
               </div>

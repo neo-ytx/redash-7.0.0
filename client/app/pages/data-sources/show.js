@@ -3,7 +3,7 @@ import debug from 'debug';
 import template from './show.html';
 
 const logger = debug('redash:http');
-export const deleteConfirm = { class: 'btn-warning', title: 'Delete' };
+export const deleteConfirm = { class: 'btn-warning', title: '删除' };
 export function logAndToastrError(deleteObject, httpResponse, toastr) {
   logger('Failed to delete ' + deleteObject + ': ', httpResponse.status, httpResponse.statusText, httpResponse.data);
   toastr.error('Failed to delete ' + deleteObject + '.');
@@ -59,8 +59,8 @@ function DataSourceCtrl(
       });
     };
 
-    const deleteTitle = 'Delete Data source';
-    const deleteMessage = `Are you sure you want to delete the "${$scope.dataSource.name}" data source?`;
+    const deleteTitle = '删除该数据源';
+    const deleteMessage = `你确定要删除数据源 "${$scope.dataSource.name}" 吗？`;
 
     AlertDialog.open(deleteTitle, deleteMessage, deleteConfirm).then(doDelete, callback);
   }
@@ -68,9 +68,9 @@ function DataSourceCtrl(
   function testConnection(callback) {
     DataSource.test({ id: $scope.dataSource.id }, (httpResponse) => {
       if (httpResponse.ok) {
-        toastr.success('Success');
+        toastr.success('成功');
       } else {
-        toastr.error(httpResponse.message, 'Connection Test Failed:', { timeOut: 10000 });
+        toastr.error(httpResponse.message, '连接测试失败：', { timeOut: 10000 });
       }
       callback();
     }, (httpResponse) => {
@@ -81,9 +81,9 @@ function DataSourceCtrl(
   }
 
   $scope.actions = [
-    { name: 'Delete', type: 'danger', callback: deleteDataSource },
+    { name: '删除', type: 'danger', callback: deleteDataSource },
     {
-      name: 'Test Connection', pullRight: true, callback: testConnection, disableWhenDirty: true,
+      name: '测试连接', pullRight: true, callback: testConnection, disableWhenDirty: true,
     },
   ];
 }
