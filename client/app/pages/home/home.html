@@ -1,10 +1,10 @@
 <div class="container">
   <div ng-if="!$ctrl.isEmailVerified" class="alert alert-warning">
-      We have sent an email with a confirmation link to your email address. Please follow the link to verify your email address. <a ng-click="$ctrl.verifyEmail()">Resend email</a>.
+    我们已向您的电子邮件地址发送了一封确认链接的电子邮件。请点击链接验证您的电子邮件地址。 <a ng-click="$ctrl.verifyEmail()">重发电子邮件</a>.
   </div>
   <empty-state
-    title="'Welcome to Redash 👋'"
-    description="'Connect to any data source, easily visualize and share your data'"
+    title="'欢迎来到 Redash 👋'"
+    description="'可以连接到任何数据源，并且可以方便地可视化和分享数据。'"
     illustration="'dashboard'"
     help-link="'https://redash.io/help/user-guide/getting-started'"
     show-dashboard-step="true"
@@ -18,13 +18,13 @@
     <div class="t-body tb-padding">
       <div class="row">
         <div class="col-sm-6">
-          <p class="f-500 m-b-20 c-black">Favorite Dashboards</p>
+          <p class="f-500 m-b-20 c-black">收藏的仪表板列表</p>
 
           <p ng-if="$ctrl.noDashboards">
             <span class="btn-favourite">
               <i class="fa fa-star" aria-hidden="true"></i>
             </span>
-            Favorite <a href="dashboards">Dashboards</a> will appear here
+            收藏的 <a href="dashboards">仪表板</a> 将会展示在这里
           </p>
 
           <div class="list-group">
@@ -34,18 +34,18 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
               </span>
               {{dashboard.name}}
-              <span class="label label-default" ng-if="dashboard.is_draft">Unpublished</span>
+              <span class="label label-default" ng-if="dashboard.is_draft">未发布</span>
             </a>
           </div>
         </div>
 
         <div class="col-sm-6">
-          <p class="f-500 m-b-20 c-black">Favorite Queries</p>
+          <p class="f-500 m-b-20 c-black">收藏的查询列表</p>
           <p ng-if="$ctrl.noQueries">
             <span class="btn-favourite">
               <i class="fa fa-star" aria-hidden="true"></i>
             </span>
-            Favorite <a href="queries">Queries</a> will appear here
+            收藏的 <a href="queries">查询</a> 将会展示在这里
           </p>
           <div class="list-group">
             <a ng-href="queries/{{query.id}}" class="list-group-item" ng-repeat="query in $ctrl.favoriteQueries" ng-if="query.is_favorite">
@@ -53,7 +53,7 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
               </span>
               {{query.name}}
-              <span class="label label-default" ng-if="query.is_draft">Unpublished</span>
+              <span class="label label-default" ng-if="query.is_draft">未发布</span>
             </a>
           </div>
         </div>

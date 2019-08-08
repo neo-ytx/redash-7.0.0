@@ -8,13 +8,13 @@ import './table-editor.less';
 const ALLOWED_ITEM_PER_PAGE = [5, 10, 15, 20, 25, 50, 100, 150, 200, 250];
 
 const DISPLAY_AS_OPTIONS = [
-  { name: 'Text', value: 'string' },
-  { name: 'Number', value: 'number' },
-  { name: 'Date/Time', value: 'datetime' },
-  { name: 'Boolean', value: 'boolean' },
-  { name: 'JSON', value: 'json' },
-  { name: 'Image', value: 'image' },
-  { name: 'Link', value: 'link' },
+  { name: '文本', value: 'string' },
+  { name: '数字', value: 'number' },
+  { name: '日期时间', value: 'datetime' },
+  { name: '布尔值', value: 'boolean' },
+  { name: 'JSON数据', value: 'json' },
+  { name: '图片', value: 'image' },
+  { name: '链接', value: 'link' },
 ];
 
 const DEFAULT_OPTIONS = {
