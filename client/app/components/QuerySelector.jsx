@@ -105,7 +105,7 @@ export function QuerySelector(props) {
 
   function renderResults() {
     if (!searchResults.length) {
-      return <div className="text-muted">No results matching search term.</div>;
+      return <div className="text-muted">没有匹配搜索字词的结果。</div>;
     }
 
     return (

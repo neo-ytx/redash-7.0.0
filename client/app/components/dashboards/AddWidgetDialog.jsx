@@ -109,7 +109,7 @@ class AddWidgetDialog extends React.Component {
     return (
       <div>
         <div className="form-group">
-          <label htmlFor="choose-visualization">Choose Visualization</label>
+          <label htmlFor="choose-visualization">选择可视化页面</label>
           <Select
             id="choose-visualization"
             className="w-100"

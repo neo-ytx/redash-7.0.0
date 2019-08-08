@@ -33,7 +33,7 @@ export default function QueriesListEmptyState({ page, searchTerm, selectedTags }
       <EmptyState
         icon="fa fa-code"
         illustration="query"
-        description="Getting the data from your datasources."
+        description="从数据源获取数据。"
         helpLink="https://help.redash.io/category/21-querying"
       />
     );

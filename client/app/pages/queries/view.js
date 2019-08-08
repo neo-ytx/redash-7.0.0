@@ -321,10 +321,10 @@ function QueryViewCtrl(
       );
     }
 
-    const title = 'Archive Query';
+    const title = '查询归档';
     const message =
-      'Are you sure you want to archive this query?<br/> All alerts and dashboard widgets created with its visualizations will be deleted.';
-    const confirm = { class: 'btn-warning', title: 'Archive' };
+      '你确定要归档此查询吗？<br/> 将删除所有有关的警报和可视化组件。';
+    const confirm = { class: 'btn-warning', title: '归档' };
 
     AlertDialog.open(title, message, confirm).then(archive);
   };

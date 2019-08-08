@@ -69,7 +69,7 @@ class AlertsList extends React.Component {
             <EmptyState
               icon="fa fa-bell-o"
               illustration="alert"
-              description="Get notified on certain events"
+              description="获得有关某些事件的通知。"
               helpLink="https://redash.io/help/user-guide/alerts/"
               showAlertStep
             />
