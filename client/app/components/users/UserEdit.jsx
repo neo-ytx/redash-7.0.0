@@ -68,6 +68,7 @@ export default class UserEdit extends React.Component {
       title: '重新生成API密钥',
       content: '确认重新生成API密钥吗？',
       okText: '重新生成',
+      cancelText: '取消',
       onOk: doRegenerate,
       maskClosable: true,
       autoFocusButton: null,

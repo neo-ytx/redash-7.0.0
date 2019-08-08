@@ -21,7 +21,7 @@ const AlertDialogComponent = {
   controller() {
     this.title = this.resolve.title;
     this.message = this.resolve.message;
-    this.confirm = Object.assign({}, { class: 'btn-sucess', show: true, title: 'OK' }, this.resolve.confirm);
+    this.confirm = Object.assign({}, { class: 'btn-sucess', show: true, title: '确定' }, this.resolve.confirm);
   },
 };
 

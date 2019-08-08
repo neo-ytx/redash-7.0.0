@@ -41,7 +41,7 @@ export function QuerySelector(props) {
 
   let isStaleSearch = false;
   const debouncedSearch = debounce(_search, SEARCH_DEBOUNCE_DURATION);
-  const placeholder = 'Search a query by name';
+  const placeholder = '按名称搜索查询';
   const clearIcon = <i className="fa fa-times" onClick={() => selectQuery(null)} />;
   const spinIcon = <i className={cx('fa fa-spinner fa-pulse', { hidden: !searching })} />;
 

@@ -6,9 +6,10 @@ import Modal from 'antd/lib/modal';
 import Input from 'antd/lib/input';
 import Tooltip from 'antd/lib/tooltip';
 import Divider from 'antd/lib/divider';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/es/locale-provider/zh_CN';
 import { wrap as wrapDialog, DialogPropType } from '@/components/DialogWrapper';
 import { toastr } from '@/services/ng';
-
 import './AddTextboxDialog.less';
 
 class AddTextboxDialog extends React.Component {
@@ -55,48 +56,50 @@ class AddTextboxDialog extends React.Component {
     const { dialog } = this.props;
 
     return (
-      <Modal
-        {...dialog.props}
-        title="Add Textbox"
-        onOk={() => this.saveWidget()}
-        okButtonProps={{
-          loading: this.state.saveInProgress,
-          disabled: !this.state.text,
-        }}
-        okText="Add to Dashboard"
-        width={500}
-      >
-        <div className="add-textbox">
-          <Input.TextArea
-            className="resize-vertical"
-            rows="5"
-            value={this.state.text}
-            onChange={this.onTextChanged}
-            autoFocus
-            placeholder="This is where you write some text"
-          />
-          <small>
-            Supports basic{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.markdownguide.org/cheat-sheet/#basic-syntax"
-            >
-              <Tooltip title="Markdown guide opens in new window">Markdown</Tooltip>
-            </a>.
-          </small>
-          {this.state.text && (
-            <React.Fragment>
-              <Divider dashed />
-              <strong className="preview-title">Preview:</strong>
-              <p
-                dangerouslySetInnerHTML={{ __html: this.state.preview }} // eslint-disable-line react/no-danger
-                className="preview"
-              />
-            </React.Fragment>
-          )}
-        </div>
-      </Modal>
+      <LocaleProvider locale={zhCN}>
+        <Modal
+          {...dialog.props}
+          title="添加文本框"
+          onOk={() => this.saveWidget()}
+          okButtonProps={{
+            loading: this.state.saveInProgress,
+            disabled: !this.state.text,
+          }}
+          okText="添加到仪表板"
+          width={500}
+        >
+          <div className="add-textbox">
+            <Input.TextArea
+              className="resize-vertical"
+              rows="5"
+              value={this.state.text}
+              onChange={this.onTextChanged}
+              autoFocus
+              placeholder="你可以在此处输入文本"
+            />
+            <small>
+              支持基本的{' '}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.markdownguide.org/cheat-sheet/#basic-syntax"
+              >
+                <Tooltip title="在新窗口中打开Markdown指南">Markdown</Tooltip>
+              </a>.
+            </small>
+            {this.state.text && (
+              <React.Fragment>
+                <Divider dashed />
+                <strong className="preview-title">预览：</strong>
+                <p
+                  dangerouslySetInnerHTML={{ __html: this.state.preview }} // eslint-disable-line react/no-danger
+                  className="preview"
+                />
+              </React.Fragment>
+            )}
+          </div>
+        </Modal>
+      </LocaleProvider>
     );
   }
 }

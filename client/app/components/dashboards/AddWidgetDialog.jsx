@@ -3,16 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'antd/lib/select';
 import Modal from 'antd/lib/modal';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/es/locale-provider/zh_CN';
 import { wrap as wrapDialog, DialogPropType } from '@/components/DialogWrapper';
 import {
   MappingType,
   ParameterMappingListInput,
 } from '@/components/ParameterMappingInput';
 import { QuerySelector } from '@/components/QuerySelector';
-
 import { toastr } from '@/services/ng';
 
 import { Query } from '@/services/query';
+import './AddTextboxDialog.less';
 
 const { Option, OptGroup } = Select;
 
@@ -133,33 +135,35 @@ class AddWidgetDialog extends React.Component {
     const { dialog } = this.props;
 
     return (
-      <Modal
-        {...dialog.props}
-        title="Add Widget"
-        onOk={() => this.saveWidget()}
-        okButtonProps={{
-          loading: this.state.saveInProgress,
-          disabled: !this.state.selectedQuery,
-        }}
-        okText="Add to Dashboard"
-        width={700}
-      >
-        <QuerySelector onChange={query => this.selectQuery(query)} />
-        {this.state.selectedQuery && this.renderVisualizationInput()}
+      <LocaleProvider locale={zhCN}>
+        <Modal
+          {...dialog.props}
+          title="添加组件"
+          onOk={() => this.saveWidget()}
+          okButtonProps={{
+            loading: this.state.saveInProgress,
+            disabled: !this.state.selectedQuery,
+          }}
+          okText="添加到仪表板"
+          width={700}
+        >
+          <QuerySelector onChange={query => this.selectQuery(query)} />
+          {this.state.selectedQuery && this.renderVisualizationInput()}
 
-        {
-          (this.state.parameterMappings.length > 0) && [
-            <label key="parameters-title" htmlFor="parameter-mappings">Parameters</label>,
-            <ParameterMappingListInput
-              key="parameters-list"
-              id="parameter-mappings"
-              mappings={this.state.parameterMappings}
-              existingParams={existingParams}
-              onChange={mappings => this.updateParamMappings(mappings)}
-            />,
-          ]
-        }
-      </Modal>
+          {
+            (this.state.parameterMappings.length > 0) && [
+              <label key="parameters-title" htmlFor="parameter-mappings">参数</label>,
+              <ParameterMappingListInput
+                key="parameters-list"
+                id="parameter-mappings"
+                mappings={this.state.parameterMappings}
+                existingParams={existingParams}
+                onChange={mappings => this.updateParamMappings(mappings)}
+              />,
+            ]
+          }
+        </Modal>
+      </LocaleProvider>
     );
   }
 }
