@@ -100,7 +100,8 @@ class Mysql(BaseSQLQueryRunner):
         query = """
         SELECT col.table_schema as table_schema,
                col.table_name as table_name,
-               col.column_name as column_name
+               col.column_name as column_name,
+               col.data_type as data_type
         FROM `information_schema`.`columns` col
         WHERE col.table_schema NOT IN ('information_schema', 'performance_schema', 'mysql', 'sys');
         """
@@ -119,9 +120,11 @@ class Mysql(BaseSQLQueryRunner):
                 table_name = row['table_name']
 
             if table_name not in schema:
-                schema[table_name] = {'name': table_name, 'columns': []}
+                schema[table_name] = {'name': table_name, 'columns': [], 'data_type': [], 'size': 0}
 
+            schema[table_name]['size'] += 1
             schema[table_name]['columns'].append(row['column_name'])
+            schema[table_name]['data_type'].append(row['data_type'])
 
         return schema.values()
 
