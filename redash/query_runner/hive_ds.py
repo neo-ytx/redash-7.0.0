@@ -88,7 +88,7 @@ class Hive(BaseSQLQueryRunner):
                     table_name = '{}.{}'.format(schema_name, table_name)
 
                 #schema[table_name] = {'name': table_name, 'columns': columns, 'data_type': data_type}
-                schema[table_name] = {'name': table_name, 'columns': columns_datatype}
+                schema[table_name] = {'name': table_name, 'columns': columns_datatype, 'size': len(columns_datatype)}
         return schema.values()
 
     def _get_connection(self):
