@@ -23,7 +23,11 @@ function SchemaBrowserCtrl($rootScope, $scope) {
   };
 
   this.itemSelected = ($event, hierarchy) => {
-    $rootScope.$broadcast('query-editor.command', 'paste', hierarchy.join('.'));
+    if (typeof (hierarchy[0]) === 'string') {
+      $rootScope.$broadcast('query-editor.command', 'paste', hierarchy.join('.'));
+    } else {
+      $rootScope.$broadcast('query-editor.command', 'paste', [hierarchy[0][0]].join('.'));
+    }
     $event.preventDefault();
     $event.stopPropagation();
   };
