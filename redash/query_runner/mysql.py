@@ -123,8 +123,7 @@ class Mysql(BaseSQLQueryRunner):
                 schema[table_name] = {'name': table_name, 'columns': [], 'data_type': [], 'size': 0}
 
             schema[table_name]['size'] += 1
-            schema[table_name]['columns'].append(row['column_name'])
-            schema[table_name]['data_type'].append(row['data_type'])
+            schema[table_name]['columns'].append([row['column_name'], row['data_type']])
 
         return schema.values()
 

@@ -77,16 +77,18 @@ class Hive(BaseSQLQueryRunner):
 
         tables_query = "show tables in %s"
 
-        columns_query = "show columns in %s.%s"
+        #columns_query = "show columns in %s.%s"
 
+        columns_datatype_query = "desc %s.%s"
         for schema_name in filter(lambda a: len(a) > 0, map(lambda a: str(a['database_name']), self._run_query_internal(schemas_query))):
             for table_name in filter(lambda a: len(a) > 0, map(lambda a: str(a['tab_name']), self._run_query_internal(tables_query % schema_name))):
-                columns = filter(lambda a: len(a) > 0, map(lambda a: str(a['field']), self._run_query_internal(columns_query % (schema_name, table_name))))
-
+                #columns = filter(lambda a: len(a) > 0, map(lambda a: str(a['field']), self._run_query_internal(columns_query % (schema_name, table_name))))
+                columns_datatype = filter(lambda a: len(a) > 0, map(lambda a: [str(a['col_name']), str(a['data_type'])], self._run_query_internal(columns_datatype_query % (schema_name, table_name))))
                 if schema_name != 'default':
                     table_name = '{}.{}'.format(schema_name, table_name)
 
-                schema[table_name] = {'name': table_name, 'columns': columns}
+                #schema[table_name] = {'name': table_name, 'columns': columns, 'data_type': data_type}
+                schema[table_name] = {'name': table_name, 'columns': columns_datatype}
         return schema.values()
 
     def _get_connection(self):
