@@ -149,7 +149,7 @@ export function PageSizeSelect({ options, value, onChange }) {
           onChange={onChange}
         >
           {map(options, option => (
-            <Select.Option key={option} value={option}>{ option } results</Select.Option>
+            <Select.Option key={option} value={option}>{ option } 个结果</Select.Option>
           ))}
         </Select>
       </div>

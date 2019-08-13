@@ -1,22 +1,22 @@
 <div class="container">
-  <page-header title="'Admin'"></page-header>
+  <page-header title="'管理员'"></page-header>
 
   <div class="bg-white tiled">
     <ul class="tab-nav">
       <li class="active">
-        <a href="admin/status">System Status</a>
+        <a href="admin/status">系统状态</a>
       </li>
       <li>
-        <a href="admin/queries/tasks">Celery Status</a>
+        <a href="admin/queries/tasks">任务队列状态</a>
       </li>
       <li>
-        <a href="admin/queries/outdated">Outdated Queries</a>
+        <a href="admin/queries/outdated">过时的查询</a>
       </li>
     </ul>
 
     <div class="row p-15">
       <ul class="list-group p-l-15 col-lg-4">
-        <li class="list-group-item active">General</li>
+        <li class="list-group-item active">总览</li>
         <li class="list-group-item" ng-repeat="(name, value) in status">
           <span class="badge">{{ value }}</span>
           {{ name | toHuman }}
@@ -24,26 +24,26 @@
       </ul>
 
       <ul class="list-group col-lg-4">
-        <li class="list-group-item active">Manager</li>
+        <li class="list-group-item active">管理</li>
         <li class="list-group-item">
           <span
             class="badge"
             am-time-ago="manager.last_refresh_at*1000.0"
           ></span>
-          Last Refresh
+          最后刷新时间
         </li>
         <li class="list-group-item">
           <span class="badge" am-time-ago="manager.started_at*1000.0"></span>
-          Started
+          已经开始
         </li>
         <li class="list-group-item">
           <span class="badge">{{ manager.outdated_queries_count }}</span>
-          Outdated Queries Count
+          过去查询统计
         </li>
       </ul>
 
       <ul class="list-group col-lg-4">
-        <li class="list-group-item active">Queues</li>
+        <li class="list-group-item active">队列</li>
         <li class="list-group-item" ng-repeat="(name, value) in manager.queues">
           <span class="badge">{{ value.size }}</span>
           {{ name }}
@@ -58,7 +58,7 @@
     </div>
     <div class="row p-15">
       <ul class="list-group col-lg-4">
-        <li class="list-group-item active">Redash Database</li>
+        <li class="list-group-item active">Redash数据库</li>
         <li
           class="list-group-item"
           ng-repeat="(name, size) in database_metrics.metrics"

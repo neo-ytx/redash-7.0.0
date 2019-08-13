@@ -1,11 +1,11 @@
 <div class="container">
-  <page-header title="'Admin'"></page-header>
+  <page-header title="'管理员'"></page-header>
 
   <div class="bg-white tiled">
     <ul class="tab-nav">
-      <li><a href="admin/status">System Status</a></li>
-      <li><a href="admin/queries/tasks">Celery Status</a></li>
-      <li class="active"><a href="admin/queries/outdated">Outdated Queries</a></li>
+      <li><a href="admin/status">系统状态</a></li>
+      <li><a href="admin/queries/tasks">任务队列状态</a></li>
+      <li class="active"><a href="admin/queries/outdated">过时的查询</a></li>
     </ul>
 
     <div class="">
@@ -13,12 +13,12 @@
         <thead>
         <tr>
           <th>Id</th>
-          <th>Name</th>
-          <th>Created By</th>
-          <th>Runtime</th>
-          <th>Last Executed At</th>
-          <th>Created At</th>
-          <th>Update Schedule</th>
+          <th>名称</th>
+          <th>创建者</th>
+          <th>运行时间</th>
+          <th>最后执行时间</th>
+          <th>创建时间</th>
+          <th>更新计划</th>
         </tr>
         </thead>
         <tbody>
@@ -41,9 +41,9 @@
 
       <div class="p-15">
         <div class="badge">
-          Last update: <span am-time-ago="updatedAt"></span>
+          最后一个更新: <span am-time-ago="updatedAt"></span>
         </div>
-        (<label><input type="checkbox" ng-model="autoUpdate"> Auto Update</label>)
+        (<label><input type="checkbox" ng-model="autoUpdate"> 自动更新</label>)
       </div>
     </div>
   </div>
