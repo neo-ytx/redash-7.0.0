@@ -121,9 +121,12 @@ class PostgreSQL(BaseSQLQueryRunner):
                 table_name = row['table_name']
 
             if table_name not in schema:
-                schema[table_name] = {'name': table_name, 'columns': []}
-
-            schema[table_name]['columns'].append(row['column_name'])
+                size_query = "SELECT count(*) as size from %s;" % table_name
+                size_results, error = self.run_query(size_query, None)
+                size_results = json_loads(size_results)['rows'][0]['size']
+                schema[table_name] = {'name': table_name, 'columns': [], 'size': size_results}
+            print (row)
+            schema[table_name]['columns'].append([row['column_name'], row['data_type']])
 
     def _get_tables(self, schema):
         '''
@@ -140,7 +143,7 @@ class PostgreSQL(BaseSQLQueryRunner):
         c = composite type
         '''
 
-        query = """
+        query2 = """
         SELECT s.nspname as table_schema,
                c.relname as table_name,
                a.attname as column_name
@@ -153,6 +156,11 @@ class PostgreSQL(BaseSQLQueryRunner):
         AND a.attnum > 0
         AND NOT a.attisdropped
         WHERE c.relkind IN ('r', 'v', 'm', 'f', 'p')
+        """
+        query = """
+        select table_schema, table_name, column_name, data_type 
+        from information_schema.columns
+        where table_schema NOT IN ('pg_catalog', 'information_schema')
         """
 
         self._get_definitions(schema, query)

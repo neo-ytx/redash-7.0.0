@@ -122,8 +122,8 @@ class Mysql(BaseSQLQueryRunner):
             if table_name not in schema:
                 size_query = "SELECT count(*) as size from %s;" %table_name
                 size_results, error = self.run_query(size_query, None)
-                size_results = json_loads(size_results)
-                schema[table_name] = {'name': table_name, 'columns': [], 'data_type': [], 'size': size_results['rows'][0]['size']}
+                size_results = json_loads(size_results)['rows'][0]['size']
+                schema[table_name] = {'name': table_name, 'columns': [], 'data_type': [], 'size': size_results}
 
             schema[table_name]['columns'].append([row['column_name'], row['data_type']])
 
