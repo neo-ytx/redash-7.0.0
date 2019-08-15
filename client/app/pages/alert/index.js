@@ -30,7 +30,7 @@ function AlertCtrl($scope, $routeParams, $location, $sce, toastr, currentUser, Q
     });
   }
 
-  this.ops = ['greater than', 'less than', 'equals'];
+  this.ops = ['大于', '少于', '等于'];
   this.selectedQuery = null;
 
   const defaultNameBuilder = templateBuilder('<%= query.name %>: <%= options.column %> <%= options.op %> <%= options.value %>');
