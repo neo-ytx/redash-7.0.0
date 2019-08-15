@@ -100,7 +100,6 @@ class BaseElasticSearch(BaseQueryRunner):
             self.auth = HTTPBasicAuth(basic_auth_user, basic_auth_password)
 
     def _get_mappings(self, url):
-        print ( url)
         mappings = {}
         error = None
         try:

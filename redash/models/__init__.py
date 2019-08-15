@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import cStringIO
 import csv
 import datetime
@@ -763,11 +764,11 @@ class Alert(TimestampMixin, BelongsToOrgMixin, db.Model):
             value = data['rows'][0][self.options['column']]
             op = self.options['op']
 
-            if op == 'greater than' and value > self.options['value']:
+            if op == '大于' and value > self.options['value']:
                 new_state = self.TRIGGERED_STATE
-            elif op == 'less than' and value < self.options['value']:
+            elif op == '少于' and value < self.options['value']:
                 new_state = self.TRIGGERED_STATE
-            elif op == 'equals' and value == self.options['value']:
+            elif op == '等于' and value == self.options['value']:
                 new_state = self.TRIGGERED_STATE
             else:
                 new_state = self.OK_STATE

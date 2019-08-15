@@ -1,47 +1,47 @@
 <div class="container">
   <page-header title="$ctrl.alert.name || $ctrl.getDefaultName() || 'New Alert'"></page-header>
 
-  <email-settings-warning feature-name="'alert emails'"></email-settings-warning>
+  <email-settings-warning feature-name="'警报邮件'"></email-settings-warning>
 
   <div class="container">
     <div class="row bg-white tiled p-10">
       <div class="col-md-8">
         <form name="alertForm" class="form">
           <div class="form-group">
-            <label>Query</label>
+            <label>查询</label>
             <query-selector type="'select'" selected-query="$ctrl.alert.query" on-change="$ctrl.onQuerySelected" disabled="!$ctrl.canEdit" />
           </div>
 
           <div class="form-group" ng-show="$ctrl.selectedQuery">
-            <label>Name</label>
+            <label>名称</label>
             <input type="string" placeholder="{{$ctrl.getDefaultName()}}" class="form-control" ng-model="$ctrl.alert.name" ng-disabled="!$ctrl.canEdit">
           </div>
 
           <div ng-show="$ctrl.queryResult" class="form-horizontal">
             <div class="form-group">
-              <label class="control-label col-md-2">Value column</label>
+              <label class="control-label col-md-2">值列</label>
               <div class="col-md-4">
                 <select ng-options="name for name in $ctrl.queryResult.getColumnNames()" ng-model="$ctrl.alert.options.column"
                         class="form-control" ng-disabled="!$ctrl.canEdit"></select>
               </div>
-              <label class="control-label col-md-2">Value</label>
+              <label class="control-label col-md-2">值</label>
               <div class="col-md-4">
                 <p class="form-control-static">{{$ctrl.queryResult.getData()[0][$ctrl.alert.options.column]}}</p>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-2">Op</label>
+              <label class="control-label col-md-2">操作</label>
               <div class="col-md-4">
                 <select ng-options="name for name in $ctrl.ops" ng-model="$ctrl.alert.options.op" class="form-control" ng-disabled="!$ctrl.canEdit"></select>
               </div>
-              <label class="control-label col-md-2">Reference</label>
+              <label class="control-label col-md-2">参考</label>
               <div class="col-md-4">
-                <input type="number" step="any" class="form-control" ng-model="$ctrl.alert.options.value" placeholder="reference value" ng-disabled="!$ctrl.canEdit"
+                <input type="number" step="any" class="form-control" ng-model="$ctrl.alert.options.value" placeholder="参考值" ng-disabled="!$ctrl.canEdit"
                        required/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-2">Rearm seconds</label>
+              <label class="control-label col-md-2">重置秒数</label>
               <div class="col-md-4">
                 <input type="number" class="form-control" ng-model="$ctrl.alert.rearm" ng-disabled="!$ctrl.canEdit"/>
               </div>
@@ -49,8 +49,8 @@
           </div>
 
           <div class="form-group" ng-if="$ctrl.canEdit">
-            <button class="btn btn-primary" ng-disabled="!alertForm.$valid" ng-click="$ctrl.saveChanges()">Save</button>
-            <button class="btn btn-danger" ng-if="$ctrl.alert.id" ng-click="$ctrl.delete()">Delete</button>
+            <button class="btn btn-primary" ng-disabled="!alertForm.$valid" ng-click="$ctrl.saveChanges()">保存</button>
+            <button class="btn btn-danger" ng-if="$ctrl.alert.id" ng-click="$ctrl.delete()">删除</button>
           </div>
         </form>
       </div>
