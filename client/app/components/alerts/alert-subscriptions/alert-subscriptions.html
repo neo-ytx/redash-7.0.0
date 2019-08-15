@@ -1,5 +1,5 @@
 <div class="p-5">
-  <h4>Notifications</h4>
+  <h4>通知</h4>
 
   <div>
     <ui-select ng-model="newSubscription.destination" ng-disabled="destinations.length == 0">
@@ -10,9 +10,9 @@
     </ui-select>
   </div>
   <div class="m-t-5">
-    <button class="btn btn-default" ng-click="saveSubscriber()" ng-disabled="destinations.length == 0" style="width:50%;">Add</button>
+    <button class="btn btn-default" ng-click="saveSubscriber()" ng-disabled="destinations.length == 0" style="width:50%;">添加</button>
     <span class="pull-right m-t-5">
-      <a href="destinations/new" ng-if="currentUser.isAdmin">Create New Destination</a>
+      <a href="destinations/new" ng-if="currentUser.isAdmin">创建新目标</a>
     </span>
   </div>
 
@@ -21,7 +21,7 @@
   <div>
     <div class="list-group-item" ng-repeat="subscriber in subscribers">
       <span ng-bind-html="destinationsDisplay(subscriber)"></span>
-      <button class="btn btn-xs btn-danger pull-right" ng-click="unsubscribe(subscriber)" ng-if="currentUser.isAdmin || currentUser.id == subscriber.user.id">Remove</button>
+      <button class="btn btn-xs btn-danger pull-right" ng-click="unsubscribe(subscriber)" ng-if="currentUser.isAdmin || currentUser.id == subscriber.user.id">移除</button>
     </div>
   </div>
 </div>
