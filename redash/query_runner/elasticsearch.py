@@ -100,6 +100,7 @@ class BaseElasticSearch(BaseQueryRunner):
             self.auth = HTTPBasicAuth(basic_auth_user, basic_auth_password)
 
     def _get_mappings(self, url):
+        print ( url)
         mappings = {}
         error = None
         try:
@@ -148,9 +149,16 @@ class BaseElasticSearch(BaseQueryRunner):
             '''
             path = path or []
             result = []
-            for field, description in doc['properties'].items():
+            #for field, description in doc['properties'].items():
+            #    if 'properties' in description:
+            #        result.extend(parse_doc(description, path + [field]))
+            #    else:
+            #        result.append('.'.join(path + [field]))
+            for field, description in doc.items():
                 if 'properties' in description:
                     result.extend(parse_doc(description, path + [field]))
+                elif 'type' in description:
+                    result.append(['.'.join(path + [field]), description['type']])
                 else:
                     result.append('.'.join(path + [field]))
             return result
@@ -164,14 +172,19 @@ class BaseElasticSearch(BaseQueryRunner):
             # the index contains a mappings dict with documents
             # in a hierarchical format
             for name, index in mappings.items():
+                count_url = "{0}/{1}/_count".format(self.server_url, name)
+                count_mappings, error = self._get_mappings(count_url)
                 columns = []
-                schema[name] = {'name': name}
+                if ('count' in count_mappings):
+                    schema[name] = {'name': name, 'size': count_mappings['count']}
+                else:
+                    schema[name] = {'name': name}
                 for doc, items in index['mappings'].items():
-                    columns.extend(parse_doc(items))
+                     columns.extend(parse_doc(items))
 
                 # remove duplicates
                 # sort alphabetically
-                schema[name]['columns'] = sorted(set(columns))
+                schema[name]['columns'] = columns#sorted(set(columns))
         return schema.values()
 
     def _parse_results(self, mappings, result_fields, raw_result, result_columns, result_rows):
