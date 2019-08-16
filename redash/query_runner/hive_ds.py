@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 try:
     from pyhive import hive
     from thrift.transport import THttpClient
+
     enabled = True
 except ImportError:
     enabled = False
@@ -77,21 +78,19 @@ class Hive(BaseSQLQueryRunner):
 
         tables_query = "show tables in %s"
 
-        #columns_query = "show columns in %s.%s"
+        columns_query = "show columns in %s.%s"
 
-        columns_datatype_query = "desc %s.%s"
-        for schema_name in filter(lambda a: len(a) > 0, map(lambda a: str(a['database_name']), self._run_query_internal(schemas_query))):
-            for table_name in filter(lambda a: len(a) > 0, map(lambda a: str(a['tab_name']), self._run_query_internal(tables_query % schema_name))):
-                #columns = filter(lambda a: len(a) > 0, map(lambda a: str(a['field']), self._run_query_internal(columns_query % (schema_name, table_name))))
-                columns_datatype = filter(lambda a: len(a) > 0, map(lambda a: [str(a['col_name']), str(a['data_type'])],
-                                                                    self._run_query_internal(columns_datatype_query % (schema_name, table_name))))
-                data_size = (self._run_query_internal("select count(*) as size from %s.%s" % (
-                                                                    schema_name, table_name)))[0]['size']
+        for schema_name in filter(lambda a: len(a) > 0,
+                                  map(lambda a: str(a['database_name']), self._run_query_internal(schemas_query))):
+            for table_name in filter(lambda a: len(a) > 0, map(lambda a: str(a['tab_name']),
+                                                               self._run_query_internal(tables_query % schema_name))):
+                columns = filter(lambda a: len(a) > 0, map(lambda a: str(a['field']), self._run_query_internal(
+                    columns_query % (schema_name, table_name))))
+
                 if schema_name != 'default':
                     table_name = '{}.{}'.format(schema_name, table_name)
 
-                #schema[table_name] = {'name': table_name, 'columns': columns, 'data_type': data_type}
-                schema[table_name] = {'name': table_name, 'columns': columns_datatype, 'size': data_size}
+                schema[table_name] = {'name': table_name, 'columns': columns}
         return schema.values()
 
     def _get_connection(self):
@@ -103,14 +102,13 @@ class Hive(BaseSQLQueryRunner):
             database=self.configuration.get('database', 'default'),
             username=self.configuration.get('username', None),
         )
-        
-        return connection
 
+        return connection
 
     def run_query(self, query, user):
         connection = None
         try:
-            connection = self._get_connection() 
+            connection = self._get_connection()
             cursor = connection.cursor()
 
             cursor.execute(query)
@@ -219,7 +217,7 @@ class HiveHttp(Hive):
 
         # create connection
         connection = hive.connect(thrift_transport=transport)
-        
+
         return connection
 
 

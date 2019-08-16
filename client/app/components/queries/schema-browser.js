@@ -23,11 +23,7 @@ function SchemaBrowserCtrl($rootScope, $scope) {
   };
 
   this.itemSelected = ($event, hierarchy) => {
-    if (typeof (hierarchy[0]) === 'string') {
-      $rootScope.$broadcast('query-editor.command', 'paste', hierarchy.join('.'));
-    } else {
-      $rootScope.$broadcast('query-editor.command', 'paste', [hierarchy[0][0]].join('.'));
-    }
+    $rootScope.$broadcast('query-editor.command', 'paste', hierarchy.join('.'));
     $event.preventDefault();
     $event.stopPropagation();
   };
