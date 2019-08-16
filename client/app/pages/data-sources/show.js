@@ -6,10 +6,10 @@ const logger = debug('redash:http');
 export const deleteConfirm = { class: 'btn-warning', title: '删除' };
 export function logAndToastrError(deleteObject, httpResponse, toastr) {
   logger('Failed to delete ' + deleteObject + ': ', httpResponse.status, httpResponse.statusText, httpResponse.data);
-  toastr.error('删除失败 ' + deleteObject + '.');
+  toastr.error(deleteObject + '删除失败。');
 }
 export function toastrSuccessAndPath(deleteObject, deletePath, toastr, $location) {
-  toastr.success(deleteObject + ' 删除成功。');
+  toastr.success(deleteObject + '删除成功。');
   $location.path('/' + deletePath + '/');
 }
 

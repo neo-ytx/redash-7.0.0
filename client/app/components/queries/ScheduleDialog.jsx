@@ -256,7 +256,7 @@ class ScheduleDialog extends React.Component {
               <div className="ends" data-testid="ends">
                 <Radio.Group size="medium" value={!!until} onChange={this.setUntilToggle}>
                   <Radio value={false}>从不</Radio>
-                  <Radio value>On</Radio>
+                  <Radio value>到</Radio>
                 </Radio.Group>
                 {until ? (
                   <DatePicker

@@ -31,20 +31,20 @@ function DestinationCtrl(
   function deleteDestination(callback) {
     const doDelete = () => {
       $scope.destination.$delete(() => {
-        toastrSuccessAndPath('Destination', 'destinations', toastr, $location);
+        toastrSuccessAndPath('目标', 'destinations', toastr, $location);
       }, (httpResponse) => {
-        logAndToastrError('destination', httpResponse, toastr);
+        logAndToastrError('目标', httpResponse, toastr);
       });
     };
 
-    const title = 'Delete Destination';
-    const message = `Are you sure you want to delete the "${$scope.destination.name}" destination?`;
+    const title = '删除该目标';
+    const message = `你确定要删除目标 "${$scope.destination.name}" 吗？`;
 
     AlertDialog.open(title, message, deleteConfirm).then(doDelete, callback);
   }
 
   $scope.actions = [
-    { name: 'Delete', type: 'danger', callback: deleteDestination },
+    { name: '删除', type: 'danger', callback: deleteDestination },
   ];
 }
 
@@ -55,7 +55,7 @@ export default function init(ngModule) {
     '/destinations/new': {
       template,
       controller: 'DestinationCtrl',
-      title: 'Destinations',
+      title: '所有目标',
       resolve: {
         destination: (Destination) => {
           'ngInject';
@@ -72,7 +72,7 @@ export default function init(ngModule) {
     '/destinations/:destinationId': {
       template,
       controller: 'DestinationCtrl',
-      title: 'Destinations',
+      title: '所有目标',
       resolve: {
         destination: (Destination, $route) => {
           'ngInject';

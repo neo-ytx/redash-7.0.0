@@ -362,9 +362,9 @@ function QueryViewCtrl(
   $scope.deleteVisualization = ($e, vis) => {
     $e.preventDefault();
 
-    const title = undefined;
-    const message = `Are you sure you want to delete ${vis.name} ?`;
-    const confirm = { class: 'btn-danger', title: 'Delete' };
+    const title = '删除该可视化页面';
+    const message = `你确定要删除 ${vis.name} 吗？`;
+    const confirm = { class: 'btn-danger', title: '删除' };
 
     AlertDialog.open(title, message, confirm).then(() => {
       Visualization.delete(
