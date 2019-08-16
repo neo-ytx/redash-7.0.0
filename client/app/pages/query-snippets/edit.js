@@ -20,12 +20,12 @@ function SnippetCtrl($routeParams, $http, $location, toastr, currentUser, AlertD
 
   this.saveChanges = () => {
     this.snippet.$save((snippet) => {
-      toastr.success('Saved.');
+      toastr.success('保存。');
       if (this.snippetId === 'new') {
         $location.path(`/query_snippets/${snippet.id}`).replace();
       }
     }, () => {
-      toastr.error('Failed saving snippet.');
+      toastr.error('保存代码段失败。');
     });
   };
 
@@ -33,15 +33,15 @@ function SnippetCtrl($routeParams, $http, $location, toastr, currentUser, AlertD
     const doDelete = () => {
       this.snippet.$delete(() => {
         $location.path('/query_snippets');
-        toastr.success('Query snippet deleted.');
+        toastr.success('查询代码段已删除。');
       }, () => {
-        toastr.error('Failed deleting query snippet.');
+        toastr.error('删除查询代码段失败。');
       });
     };
 
-    const title = 'Delete Snippet';
-    const message = `Are you sure you want to delete the "${this.snippet.trigger}" snippet?`;
-    const confirm = { class: 'btn-warning', title: 'Delete' };
+    const title = '删除代码段';
+    const message = `是否确实要删除 "${this.snippet.trigger}" 代码段?`;
+    const confirm = { class: 'btn-warning', title: '删除' };
 
     AlertDialog.open(title, message, confirm).then(doDelete);
   };

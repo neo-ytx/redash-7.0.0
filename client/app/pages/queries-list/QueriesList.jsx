@@ -23,7 +23,6 @@ import { routesToAngularRoutes } from '@/lib/utils';
 import QueriesListEmptyState from './QueriesListEmptyState';
 
 import './queries-list.css';
-import titletranslate from '@/i18n/titletranslate';
 
 class QueriesList extends React.Component {
   static propTypes = {
@@ -88,7 +87,7 @@ class QueriesList extends React.Component {
     const { controller } = this.props;
     return (
       <div className="container">
-        <PageHeader title={titletranslate[controller.params.title]} />
+        <PageHeader title={controller.params.title} />
         <Layout className="m-l-15 m-r-15">
           <Layout.Sidebar className="m-b-0">
             <Sidebar.SearchInput

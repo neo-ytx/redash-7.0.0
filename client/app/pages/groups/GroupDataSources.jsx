@@ -107,7 +107,7 @@ class GroupDataSources extends React.Component {
         this.props.controller.update();
       })
       .catch(() => {
-        toastr.error('Failed to remove data source from group.');
+        toastr.error('无法从组中删除数据源。');
       });
   };
 
@@ -120,7 +120,7 @@ class GroupDataSources extends React.Component {
         this.forceUpdate();
       })
       .catch(() => {
-        toastr.error('Failed change data source permissions.');
+        toastr.error('更改数据源权限失败。');
       });
   };
 
@@ -128,9 +128,9 @@ class GroupDataSources extends React.Component {
     const allDataSources = DataSource.query().$promise;
     const alreadyAddedDataSources = map(this.props.controller.allItems, ds => ds.id);
     SelectItemsDialog.showModal({
-      dialogTitle: 'Add Data Sources',
-      inputPlaceholder: 'Search data sources...',
-      selectedItemsTitle: 'New Data Sources',
+      dialogTitle: '添加数据源',
+      inputPlaceholder: '搜索数据源...',
+      selectedItemsTitle: '新数据源',
       searchItems: (searchTerm) => {
         searchTerm = searchTerm.toLowerCase();
         return allDataSources.then(items => filter(items, ds => ds.name.toLowerCase().includes(searchTerm)));

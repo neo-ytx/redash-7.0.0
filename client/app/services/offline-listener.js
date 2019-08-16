@@ -11,7 +11,7 @@ function addOnlineListener(toast) {
 export default function init(ngModule) {
   ngModule.run(() => {
     window.addEventListener('offline', () => {
-      const toast = toastr.warning('<div>Please check your Internet connection.</div>', '', {
+      const toast = toastr.warning('<div>请检查您的互联网连接。</div>', '', {
         allowHtml: true,
         autoDismiss: false,
         timeOut: false,

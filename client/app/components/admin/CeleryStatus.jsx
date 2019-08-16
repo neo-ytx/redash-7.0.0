@@ -44,7 +44,21 @@ function parseTasks(tasks) {
 }
 
 function QueuesTable({ loading, queues }) {
-  const columns = ['Name', 'Active', 'Reserved', 'Waiting'].map(c => ({ title: c, dataIndex: c.toLowerCase() }));
+  const columns = [
+    {
+      title: '名称',
+      dataIndex: 'name',
+    }, {
+      title: '活动中',
+      dataIndex: 'active',
+    }, {
+      title: '已保留',
+      dataIndex: 'reserved',
+    }, {
+      title: '等待中',
+      dataIndex: 'waiting',
+    },
+  ];
 
   return <Table columns={columns} rowKey="name" dataSource={queues} loading={loading} />;
 }
@@ -106,19 +120,19 @@ export default class AdminCeleryStatus extends React.Component {
   render() {
     const commonColumns = [
       {
-        title: 'Worker Name',
+        title: 'Worker名称',
         dataIndex: 'worker',
       },
       {
-        title: 'PID',
+        title: '进程 ID',
         dataIndex: 'worker_pid',
       },
       {
-        title: 'Queue',
+        title: '队列',
         dataIndex: 'queue',
       },
       {
-        title: 'State',
+        title: '状态',
         dataIndex: 'state',
         render: (value) => {
           if (value === 'active') {
@@ -135,36 +149,36 @@ export default class AdminCeleryStatus extends React.Component {
           );
         },
       },
-      Columns.timeAgo({ title: 'Start Time', dataIndex: 'start_time' }),
+      Columns.timeAgo({ title: '开始时间', dataIndex: 'start_time' }),
     ];
 
     const queryColumns = commonColumns.concat([
-      Columns.timeAgo({ title: 'Enqueue Time', dataIndex: 'enqueue_time' }),
+      Columns.timeAgo({ title: '入队时间', dataIndex: 'enqueue_time' }),
       {
-        title: 'Query ID',
+        title: '队列 ID',
         dataIndex: 'query_id',
       },
       {
-        title: 'Org ID',
+        title: '组织 ID',
         dataIndex: 'org_id',
       },
       {
-        title: 'Data Source ID',
+        title: '数据源 ID',
         dataIndex: 'data_source_id',
       },
       {
-        title: 'User ID',
+        title: '用户 ID',
         dataIndex: 'user_id',
       },
       {
-        title: 'Scheduled',
+        title: '计划',
         dataIndex: 'scheduled',
       },
     ]);
 
     const otherTasksColumns = commonColumns.concat([
       {
-        title: 'Task Name',
+        title: '任务名称',
         dataIndex: 'task_name',
       },
     ]);
@@ -181,21 +195,21 @@ export default class AdminCeleryStatus extends React.Component {
       <div className="p-5">
         <Row gutter={16}>
           <Col span={4}>
-            <CounterCard title="Active Tasks" value={this.state.counters.active} loading={this.state.loading} />
+            <CounterCard title="活动中的任务" value={this.state.counters.active} loading={this.state.loading} />
           </Col>
           <Col span={4}>
-            <CounterCard title="Reserved Tasks" value={this.state.counters.reserved} loading={this.state.loading} />
+            <CounterCard title="保留的任务" value={this.state.counters.reserved} loading={this.state.loading} />
           </Col>
           <Col span={4}>
-            <CounterCard title="Waiting Tasks" value={this.state.counters.waiting} loading={this.state.loading} />
+            <CounterCard title="等待中的任务" value={this.state.counters.waiting} loading={this.state.loading} />
           </Col>
         </Row>
         <Row>
           <Tabs defaultActiveKey="queues">
-            <Tabs.TabPane key="queues" tab="Queues">
+            <Tabs.TabPane key="queues" tab="队列列表">
               <QueuesTable loading={this.state.loading} queues={this.state.queues} />
             </Tabs.TabPane>
-            <Tabs.TabPane key="queries" tab="Queries">
+            <Tabs.TabPane key="queries" tab="查询列表">
               <Table
                 rowKey="task_id"
                 dataSource={this.state.queries}
@@ -203,7 +217,7 @@ export default class AdminCeleryStatus extends React.Component {
                 columns={queryColumns}
               />
             </Tabs.TabPane>
-            <Tabs.TabPane key="other" tab="Other Tasks">
+            <Tabs.TabPane key="other" tab="其他任务">
               <Table
                 rowKey="task_id"
                 dataSource={this.state.otherTasks}

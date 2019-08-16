@@ -67,7 +67,7 @@ function AlertCtrl($scope, $routeParams, $location, $sce, toastr, currentUser, Q
         }
       },
       () => {
-        toastr.error('警报保存失败。');
+        toastr.error('保存警报失败。');
       },
     );
   };
@@ -79,7 +79,7 @@ function AlertCtrl($scope, $routeParams, $location, $sce, toastr, currentUser, Q
         toastr.success('警报已删除。');
       },
       () => {
-        toastr.error('警报删除失败。');
+        toastr.error('删除警报失败。');
       },
     );
   };

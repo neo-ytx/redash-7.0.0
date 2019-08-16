@@ -58,9 +58,9 @@ const PermissionsEditorComponent = {
         loadGrantees();
       }).catch((error) => {
         if (error.status === 403) {
-          toastr.error('You cannot add a user to this dashboard. Ask the dashboard owner to grant them permissions.');
+          toastr.error('无法为此仪表板添加用户。请求仪表板管理员授予权限。');
         } else {
-          toastr.error('Something went wrong.');
+          toastr.error('遇到了一些错误。');
         }
       });
     };

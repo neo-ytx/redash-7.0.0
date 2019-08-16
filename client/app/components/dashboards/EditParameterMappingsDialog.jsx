@@ -84,7 +84,7 @@ class EditParameterMappingsDialog extends React.Component {
         this.props.dialog.close(valuesChanged);
       })
       .catch(() => {
-        toastr.error('Widget cannot be updated');
+        toastr.error('组件无法被更新。');
       })
       .finally(() => {
         this.setState({ saveInProgress: false });

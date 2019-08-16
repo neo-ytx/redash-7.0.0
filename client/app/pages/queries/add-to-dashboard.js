@@ -21,10 +21,10 @@ const AddToDashboardForm = {
         .save()
         .then(() => {
           this.close();
-          toastr.success('Widget added to dashboard.');
+          toastr.success('添加到仪表板的组件。');
         })
         .catch(() => {
-          toastr.error('Widget not added.');
+          toastr.error('组件未被添加。');
         })
         .finally(() => {
           this.saveInProgress = false;

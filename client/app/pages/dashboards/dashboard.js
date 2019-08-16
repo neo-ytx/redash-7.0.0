@@ -281,11 +281,11 @@ function DashboardCtrl(
       },
       (error) => {
         if (error.status === 403) {
-          toastr.error('Dashboard update failed: Permission Denied.');
+          toastr.error('仪表板更新失败：权限被拒绝。');
         } else if (error.status === 409) {
           toastr.error(
-            'It seems like the dashboard has been modified by another user. ' +
-            'Please copy/backup your changes and reload this page.',
+            '似乎仪表板已被其他用户修改。 ' +
+            '请复制/备份更改并重新加载此页。',
             { autoDismiss: false },
           );
         }
@@ -314,11 +314,11 @@ function DashboardCtrl(
       },
       (error) => {
         if (error.status === 403) {
-          toastr.error('Name update failed: Permission denied.');
+          toastr.error('名称更新失败：权限被拒绝。');
         } else if (error.status === 409) {
           toastr.error(
-            'It seems like the dashboard has been modified by another user. ' +
-              'Please copy/backup your changes and reload this page.',
+            '似乎仪表板已被其他用户修改。' +
+              '请复制/备份更改并重新加载此页。',
             { autoDismiss: false },
           );
         }

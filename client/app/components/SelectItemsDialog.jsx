@@ -100,7 +100,7 @@ class SelectItemsDialog extends React.Component {
         })
         .catch(() => {
           this.setState({ saveInProgress: false });
-          toastr.error('Failed to save some of selected items.');
+          toastr.error('无法保存某些选定项。');
         });
     });
   }
