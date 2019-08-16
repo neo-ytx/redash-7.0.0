@@ -61,7 +61,7 @@ function AlertCtrl($scope, $routeParams, $location, $sce, toastr, currentUser, Q
     }
     this.alert.$save(
       (alert) => {
-        toastr.success('保存。');
+        toastr.success('已保存。');
         if (this.alertId === 'new') {
           $location.path(`/alerts/${alert.id}`).replace();
         }

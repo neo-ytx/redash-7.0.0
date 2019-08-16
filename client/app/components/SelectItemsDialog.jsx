@@ -131,7 +131,8 @@ class SelectItemsDialog extends React.Component {
         {...dialog.props}
         width="80%"
         title={dialogTitle}
-        okText="Save"
+        okText="保存"
+        cancelText="取消"
         okButtonProps={{
           loading: saveInProgress,
           disabled: selected.length === 0,

@@ -19,9 +19,9 @@ const fieldRules = ({ type, required, minLength }) => {
   const emailTypeRule = type === 'email';
 
   return [
-    requiredRule && { required, message: 'This field is required.' },
-    minLengthRule && { min: minLength, message: 'This field is too short.' },
-    emailTypeRule && { type: 'email', message: 'This field must be a valid email.' },
+    requiredRule && { required, message: '此字段必填。' },
+    minLengthRule && { min: minLength, message: '输入字段长度过短。' },
+    emailTypeRule && { type: 'email', message: '请输入正确的电子邮箱地址。' },
   ].filter(rule => rule);
 };
 
@@ -231,13 +231,13 @@ export default function init(ngModule) {
       helper.updateTargetWithValues(props.target, values);
       props.target.$save(
         () => {
-          onSuccess('Saved.');
+          onSuccess('已保存。');
         },
         (error) => {
           if (error.status === 400 && 'message' in error.data) {
             onError(error.data.message);
           } else {
-            onError('Failed saving.');
+            onError('保存失败。');
           }
         },
       );

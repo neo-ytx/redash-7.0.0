@@ -39,8 +39,8 @@ function SnippetCtrl($routeParams, $http, $location, toastr, currentUser, AlertD
       });
     };
 
-    const title = '删除代码段';
-    const message = `是否确实要删除 "${this.snippet.trigger}" 代码段?`;
+    const title = '删除该代码段';
+    const message = `你确定要删除 "${this.snippet.trigger}" 代码段?`;
     const confirm = { class: 'btn-warning', title: '删除' };
 
     AlertDialog.open(title, message, confirm).then(doDelete);

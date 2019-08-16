@@ -13,7 +13,7 @@ const internationalization = {
   'Edit Profile': '编辑档案',
   'Data Sources': '数据源',
   'Query Snippets': '所有查询代码段',
-  'Alert Destinations': '警报目标',
+  'Alert Destinations': '所有警报目标',
   'System Status': '系统状态',
   'Log out': '退出',
   'Search queries': '搜索查询',

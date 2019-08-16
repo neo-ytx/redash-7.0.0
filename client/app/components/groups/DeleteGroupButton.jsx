@@ -8,11 +8,11 @@ import { toastr } from '@/services/ng';
 
 function deleteGroup(event, group, onGroupDeleted) {
   Modal.confirm({
-    title: 'Delete Group',
-    content: 'Are you sure you want to delete this group?',
-    okText: 'Yes',
+    title: '删除该组',
+    content: '你确定要删除该组吗？',
+    okText: '删除',
     okType: 'danger',
-    cancelText: 'No',
+    cancelText: '取消',
     onOk: () => {
       group.$delete(() => {
         toastr.success('删除组成功。');

@@ -6,14 +6,14 @@ const ApiKeyDialog = {
     <h5>API Key</h5>
     <pre>{{$ctrl.apiKey}}</pre>
 
-    <h5>Example API Calls:</h5>
+    <h5>API 调用示例：</h5>
 
     <div>
-        Results in CSV format:
+        CSV格式：
 
         <pre>{{$ctrl.csvUrl}}</pre>
 
-        Results in JSON format:
+        JSON格式：
 
         <pre>{{$ctrl.jsonUrl}}</pre>
     </div>

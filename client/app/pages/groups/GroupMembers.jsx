@@ -53,7 +53,7 @@ class GroupMembers extends React.Component {
     Columns.custom((text, user) => (
       <UserPreviewCard user={user} withLink />
     ), {
-      title: 'Name',
+      title: '名称',
       field: 'name',
       width: null,
     }),
@@ -66,7 +66,7 @@ class GroupMembers extends React.Component {
       if ((this.group.type === 'builtin') && (currentUser.id === user.id)) {
         return null;
       }
-      return <Button className="w-100" type="danger" onClick={event => this.removeGroupMember(event, user)}>Remove</Button>;
+      return <Button className="w-100" type="danger" onClick={event => this.removeGroupMember(event, user)}>移除</Button>;
     }, {
       width: '1%',
       isAvailable: () => currentUser.isAdmin,
@@ -148,11 +148,11 @@ class GroupMembers extends React.Component {
             {!controller.isLoaded && <LoadingState className="" />}
             {controller.isLoaded && controller.isEmpty && (
               <div className="text-center">
-                There are no members in this group yet.
+                该组中还没有成员。
                 {currentUser.isAdmin && (
                   <div className="m-t-5">
-                    <a href="javascript:void(0)" onClick={this.addMembers}>Click here</a>
-                    {' '} to add members.
+                    <a href="javascript:void(0)" onClick={this.addMembers}>点击此处</a>
+                    {' '} 以添加成员。
                   </div>
                 )}
               </div>
