@@ -6,10 +6,10 @@ const logger = debug('redash:http');
 export const deleteConfirm = { class: 'btn-warning', title: '删除' };
 export function logAndToastrError(deleteObject, httpResponse, toastr) {
   logger('Failed to delete ' + deleteObject + ': ', httpResponse.status, httpResponse.statusText, httpResponse.data);
-  toastr.error('Failed to delete ' + deleteObject + '.');
+  toastr.error('删除失败 ' + deleteObject + '.');
 }
 export function toastrSuccessAndPath(deleteObject, deletePath, toastr, $location) {
-  toastr.success(deleteObject + ' deleted successfully.');
+  toastr.success(deleteObject + ' 删除成功。');
   $location.path('/' + deletePath + '/');
 }
 
@@ -75,7 +75,7 @@ function DataSourceCtrl(
       callback();
     }, (httpResponse) => {
       logger('Failed to test data source: ', httpResponse.status, httpResponse.statusText, httpResponse);
-      toastr.error('Unknown error occurred while performing connection test. Please try again later.', 'Connection Test Failed:', { timeOut: 10000 });
+      toastr.error('执行连接测试时发生未知错误。请稍后再试。', '连接测试失败：', { timeOut: 10000 });
       callback();
     });
   }

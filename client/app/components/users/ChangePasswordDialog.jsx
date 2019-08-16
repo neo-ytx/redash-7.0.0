@@ -70,10 +70,10 @@ class ChangePasswordDialog extends React.Component {
           this.setState({ updatingPassword: true });
 
           User.save(userData, () => {
-            toastr.success('Saved.');
+            toastr.success('保存。');
             this.props.dialog.close({ success: true });
           }, (error = {}) => {
-            toastr.error(error.data && error.data.message || 'Failed saving.');
+            toastr.error(error.data && error.data.message || '保存失败。');
             this.setState({ updatingPassword: false });
           });
         } else {

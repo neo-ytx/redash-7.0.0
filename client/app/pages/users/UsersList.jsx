@@ -127,7 +127,7 @@ class UsersList extends React.Component {
   }
 
   createUser = values => User.create(values).$promise.then((user) => {
-    toastr.success('Saved.');
+    toastr.success('保存。');
     if (user.invite_link) {
       Modal.warning({ title: 'Email not sent!',
         content: (

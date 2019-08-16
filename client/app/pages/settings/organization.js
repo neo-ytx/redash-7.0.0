@@ -12,14 +12,14 @@ function OrganizationSettingsCtrl($http, toastr, clientConfig, Events) {
   this.update = (key) => {
     $http.post('api/settings/organization', { [key]: this.settings[key] }).then((response) => {
       this.settings = response.data.settings;
-      toastr.success('Settings changes saved.');
+      toastr.success('更改数据源权限失败。');
 
       if (this.disablePasswordLoginToggle() && this.settings.auth_password_login_enabled === false) {
         this.settings.auth_password_login_enabled = true;
         this.update('auth_password_login_enabled');
       }
     }).catch(() => {
-      toastr.error('Failed saving changes.');
+      toastr.error('保存更改失败。');
     });
   };
 

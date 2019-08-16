@@ -45,7 +45,7 @@ class AddTextboxDialog extends React.Component {
         this.props.dialog.close();
       })
       .catch(() => {
-        toastr.error('Widget could not be added');
+        toastr.error('组件无法添加。');
       })
       .finally(() => {
         this.setState({ saveInProgress: false });

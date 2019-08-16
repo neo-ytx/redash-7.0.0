@@ -14,7 +14,7 @@ function enableUser(user) {
   return $http
     .delete(disableResource(user))
     .then((data) => {
-      toastr.success(`User <b>${userName}</b> is now enabled.`, { allowHtml: true });
+      toastr.success(`用户 <b>${userName}</b> 现已启用。`, { allowHtml: true });
       user.is_disabled = false;
       user.profile_image_url = data.data.profile_image_url;
       return data;
@@ -22,9 +22,9 @@ function enableUser(user) {
     .catch((response) => {
       let message = response instanceof Error ? response.message : response.statusText;
       if (!isString(message)) {
-        message = 'Unknown error';
+        message = '未知错误';
       }
-      toastr.error(`Cannot enable user <b>${userName}</b><br>${message}`, { allowHtml: true });
+      toastr.error(`无法启用用户 <b>${userName}</b><br>${message}`, { allowHtml: true });
     });
 }
 
@@ -33,7 +33,7 @@ function disableUser(user) {
   return $http
     .post(disableResource(user))
     .then((data) => {
-      toastr.warning(`User <b>${userName}</b> is now disabled.`, { allowHtml: true });
+      toastr.warning(`用户 <b>${userName}</b> 现在被禁用。`, { allowHtml: true });
       user.is_disabled = true;
       user.profile_image_url = data.data.profile_image_url;
       return data;
@@ -42,7 +42,7 @@ function disableUser(user) {
       const message =
         response.data && response.data.message
           ? response.data.message
-          : `Cannot disable user <b>${userName}</b><br>${response.statusText}`;
+          : `无法禁用用户 <b>${userName}</b><br>${response.statusText}`;
 
       toastr.error(message, { allowHtml: true });
     });
@@ -53,14 +53,14 @@ function deleteUser(user) {
   return $http
     .delete(`api/users/${user.id}`)
     .then((data) => {
-      toastr.warning(`User <b>${userName}</b> has been deleted.`, { allowHtml: true });
+      toastr.warning(`用户 <b>${userName}</b> 已经被删除。`, { allowHtml: true });
       return data;
     })
     .catch((response = {}) => {
       const message =
         response.data && response.data.message
           ? response.data.message
-          : `Cannot delete user <b>${userName}</b><br>${response.statusText}`;
+          : `无法删除用户 <b>${userName}</b><br>${response.statusText}`;
 
       toastr.error(message, { allowHtml: true });
     });
@@ -82,14 +82,14 @@ function regenerateApiKey(user) {
   return $http
     .post(`api/users/${user.id}/regenerate_api_key`)
     .then(({ data }) => {
-      toastr.success('The API Key has been updated.');
+      toastr.success(' API Key 已经被更新');
       return data.api_key;
     })
     .catch((response = {}) => {
       const message =
         response.data && response.data.message
           ? response.data.message
-          : `Failed regenerating API Key: ${response.statusText}`;
+          : `重新生成 API Key 失败: ${response.statusText}`;
 
       toastr.error(message);
     });
@@ -100,16 +100,16 @@ function sendPasswordReset(user) {
     .post(`api/users/${user.id}/reset_password`)
     .then(({ data }) => {
       if (clientConfig.mailSettingsMissing) {
-        toastr.warning('The mail server is not configured.');
+        toastr.warning('未配置邮件服务器。');
         return data.reset_link;
       }
-      toastr.success('Password reset email sent.');
+      toastr.success('密码重置电子邮件已发送。');
     })
     .catch((response = {}) => {
       const message =
         response.message
           ? response.message
-          : `Failed to send password reset email: ${response.statusText}`;
+          : `发送密码重置邮件失败: ${response.statusText}`;
 
       toastr.error(message);
     });
@@ -120,16 +120,16 @@ function resendInvitation(user) {
     .post(`api/users/${user.id}/invite`)
     .then(({ data }) => {
       if (clientConfig.mailSettingsMissing) {
-        toastr.warning('The mail server is not configured.');
+        toastr.warning('未配置邮件服务器。');
         return data.invite_link;
       }
-      toastr.success('Invitation sent.');
+      toastr.success('邀请已发送。');
     })
     .catch((response = {}) => {
       const message =
         response.message
           ? response.message
-          : `Failed to resend invitation: ${response.statusText}`;
+          : `重新发送邀请失败: ${response.statusText}`;
 
       toastr.error(message);
     });

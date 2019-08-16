@@ -58,7 +58,7 @@ const EditVisualizationDialog = {
       Visualization.save(
         this.visualization,
         (result) => {
-          toastr.success('Visualization saved');
+          toastr.success('可视化页面已保存');
 
           const visIds = map(this.query.visualizations, i => i.id);
           const index = visIds.indexOf(result.id);
@@ -74,7 +74,7 @@ const EditVisualizationDialog = {
           this.close();
         },
         () => {
-          toastr.error('Visualization could not be saved');
+          toastr.error('可视化页面无法保存');
         },
       );
     };

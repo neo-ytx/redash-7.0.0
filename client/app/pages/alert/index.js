@@ -61,13 +61,13 @@ function AlertCtrl($scope, $routeParams, $location, $sce, toastr, currentUser, Q
     }
     this.alert.$save(
       (alert) => {
-        toastr.success('Saved.');
+        toastr.success('保存。');
         if (this.alertId === 'new') {
           $location.path(`/alerts/${alert.id}`).replace();
         }
       },
       () => {
-        toastr.error('Failed saving alert.');
+        toastr.error('保存警报失败。');
       },
     );
   };
@@ -76,10 +76,10 @@ function AlertCtrl($scope, $routeParams, $location, $sce, toastr, currentUser, Q
     this.alert.$delete(
       () => {
         $location.path('/alerts');
-        toastr.success('Alert deleted.');
+        toastr.success('警报已删除。');
       },
       () => {
-        toastr.error('Failed deleting alert.');
+        toastr.error('删除警报失败。');
       },
     );
   };

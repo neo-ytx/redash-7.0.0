@@ -40,7 +40,7 @@ const EditTextBoxComponent = {
             this.close();
           })
           .catch(() => {
-            toastr.error('Widget can not be updated');
+            toastr.error('组件无法更新。');
           })
           .finally(() => {
             this.saveInProgress = false;

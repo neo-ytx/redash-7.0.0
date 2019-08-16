@@ -60,7 +60,7 @@ class ShareDashboardDialog extends React.Component {
         dashboard.public_url = data.public_url;
       })
       .error(() => {
-        toastr.error('Failed to turn on sharing for this dashboard');
+        toastr.error('无法打开此仪表板的共享');
       })
       .finally(() => {
         this.setState({ saving: false });
@@ -78,7 +78,7 @@ class ShareDashboardDialog extends React.Component {
         delete dashboard.public_url;
       })
       .error(() => {
-        toastr.error('Failed to turn off sharing for this dashboard');
+        toastr.error('关闭此仪表板的共享失败');
       })
       .finally(() => {
         this.setState({ saving: false });

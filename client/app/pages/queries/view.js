@@ -79,9 +79,9 @@ function QueryViewCtrl(
       } else if (data.error.code === SCHEMA_NOT_SUPPORTED) {
         $scope.schema = undefined;
       } else if (data.error.code === SCHEMA_LOAD_ERROR) {
-        toastr.error('Schema refresh failed. Please try again later.');
+        toastr.error('架构刷新失败。请稍后再试。');
       } else {
-        toastr.error('Schema refresh failed. Please try again later.');
+        toastr.error('架构刷新失败。请稍后再试。');
       }
     });
   }
@@ -258,17 +258,17 @@ function QueryViewCtrl(
       },
       (error) => {
         if (error.status === 409) {
-          const errorMessage = 'It seems like the query has been modified by another user.';
+          const errorMessage = '似乎查询已被其他用户修改。';
 
           if ($scope.isQueryOwner) {
-            const title = 'Overwrite Query';
-            const message = errorMessage + '<br>Are you sure you want to overwrite the query with your version?';
-            const confirm = { class: 'btn-warning', title: 'Overwrite' };
+            const title = '覆盖查询';
+            const message = errorMessage + '<br>是否确实要用您的版本覆盖查询？';
+            const confirm = { class: 'btn-warning', title: '覆盖' };
 
             AlertDialog.open(title, message, confirm).then(overwrite);
           } else {
             toastr.error(
-              errorMessage + ' Please copy/backup your changes and reload this page.',
+              errorMessage + ' 请复制/备份更改并重新加载此页。',
               { autoDismiss: false },
             );
           }
@@ -316,7 +316,7 @@ function QueryViewCtrl(
           $scope.query.schedule = null;
         },
         () => {
-          toastr.error('Query could not be archived.');
+          toastr.error('查询无法存档。');
         },
       );
     }
@@ -377,7 +377,7 @@ function QueryViewCtrl(
           $scope.query.visualizations = $scope.query.visualizations.filter(v => vis.id !== v.id);
         },
         () => {
-          toastr.error("Error deleting visualization. Maybe it's used in a dashboard?");
+          toastr.error('删除可视化效果时出错。可能已经在仪表板上正在使用？');
         },
       );
     });

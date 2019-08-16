@@ -94,7 +94,7 @@ export function QuerySelector(props) {
     if (queryId) {
       query = find(searchResults, { id: queryId });
       if (!query) { // shouldn't happen
-        toastr.error('Something went wrong... Couldn\'t select query');
+        toastr.error('出了点问题…无法选择查询');
       }
     }
 

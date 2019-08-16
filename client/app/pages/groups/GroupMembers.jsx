@@ -90,15 +90,15 @@ class GroupMembers extends React.Component {
       this.props.controller.update();
     })
     .catch(() => {
-      toastr.error('Failed to remove member from group.');
+      toastr.error('无法从组中删除成员。');
     });
 
   addMembers = () => {
     const alreadyAddedUsers = map(this.props.controller.allItems, u => u.id);
     SelectItemsDialog.showModal({
-      dialogTitle: 'Add Members',
-      inputPlaceholder: 'Search users...',
-      selectedItemsTitle: 'New Members',
+      dialogTitle: '增加成员',
+      inputPlaceholder: '搜索用户...',
+      selectedItemsTitle: '新成员',
       searchItems: searchTerm => User.query({ q: searchTerm }).$promise.then(({ results }) => results),
       renderItem: (item, { isSelected }) => {
         const alreadyInGroup = includes(alreadyAddedUsers, item.id);

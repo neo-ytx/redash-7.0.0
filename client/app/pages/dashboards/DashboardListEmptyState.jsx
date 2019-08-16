@@ -22,7 +22,7 @@ export default function DashboardListEmptyState({ page, searchTerm, selectedTags
     default: return (
       <EmptyState
         icon="zmdi zmdi-view-quilt"
-        description="See the big picture"
+        description="总览"
         illustration="dashboard"
         helpLink="https://help.redash.io/category/22-dashboards"
         showDashboardStep

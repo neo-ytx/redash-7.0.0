@@ -15,7 +15,7 @@ function deleteGroup(event, group, onGroupDeleted) {
     cancelText: 'No',
     onOk: () => {
       group.$delete(() => {
-        toastr.success('Group deleted successfully.');
+        toastr.success('删除组成功。');
         onGroupDeleted();
       });
     },
