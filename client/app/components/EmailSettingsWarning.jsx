@@ -6,7 +6,7 @@ import { currentUser, clientConfig } from '@/services/auth';
 export function EmailSettingsWarning({ featureName }) {
   return (clientConfig.mailSettingsMissing && currentUser.isAdmin) ? (
     <p className="alert alert-danger">
-      {`看起来您的邮件服务器未配置。 确保将其配置为${featureName}正常工作。`}
+      {`看起来您的邮件服务器未配置。 确保将其正确配置使得${featureName}正常工作。`}
     </p>
   ) : null;
 }

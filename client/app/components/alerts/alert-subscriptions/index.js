@@ -60,7 +60,7 @@ function controller($scope, $q, $sce, currentUser, AlertSubscription, Destinatio
 
     sub.$save(
       () => {
-        toastr.success('已订阅.');
+        toastr.success('订阅成功。');
         $scope.subscribers.push(sub);
         $scope.destinations = without($scope.destinations, $scope.newSubscription.destination);
         if ($scope.destinations.length > 0) {
@@ -70,7 +70,7 @@ function controller($scope, $q, $sce, currentUser, AlertSubscription, Destinatio
         }
       },
       () => {
-        toastr.error('保存订阅失败。');
+        toastr.error('订阅失败。');
       },
     );
   };
@@ -81,7 +81,7 @@ function controller($scope, $q, $sce, currentUser, AlertSubscription, Destinatio
 
     subscriber.$delete(
       () => {
-        toastr.success('未订阅');
+        toastr.success('取消订阅。');
         $scope.subscribers = without($scope.subscribers, subscriber);
         if (destination) {
           $scope.destinations.push(destination);
