@@ -7,7 +7,7 @@ import { EmptyState } from '@/components/empty-state/EmptyState';
 export default function QueriesListEmptyState({ page, searchTerm, selectedTags }) {
   if (searchTerm !== '') {
     return (
-      <BigMessage message="Sorry, we couldn't find anything." icon="fa-search" />
+      <BigMessage message="抱歉，我们找不到任何符合条件的结果。" icon="fa-search" />
     );
   }
   if (selectedTags.length > 0) {
@@ -17,10 +17,10 @@ export default function QueriesListEmptyState({ page, searchTerm, selectedTags }
   }
   switch (page) {
     case 'favorites': return (
-      <BigMessage message="Mark queries as Favorite to list them here." icon="fa-star" />
+      <BigMessage message="在这里列出标记为收藏的查询。" icon="fa-star" />
     );
     case 'archive': return (
-      <BigMessage message="Archived queries will be listed here." icon="fa-archive" />
+      <BigMessage message="在这里列出归档的查询。" icon="fa-archive" />
     );
     case 'my': return (
       <div className="tiled bg-white p-15">

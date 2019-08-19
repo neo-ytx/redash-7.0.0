@@ -7,7 +7,7 @@ import { EmptyState } from '@/components/empty-state/EmptyState';
 export default function DashboardListEmptyState({ page, searchTerm, selectedTags }) {
   if (searchTerm !== '') {
     return (
-      <BigMessage message="Sorry, we couldn't find anything." icon="fa-search" />
+      <BigMessage message="抱歉，我们找不到任何符合条件的结果。" icon="fa-search" />
     );
   }
   if (selectedTags.length > 0) {
@@ -17,7 +17,7 @@ export default function DashboardListEmptyState({ page, searchTerm, selectedTags
   }
   switch (page) {
     case 'favorites': return (
-      <BigMessage message="Mark dashboards as Favorite to list them here." icon="fa-star" />
+      <BigMessage message="在这里列出标记为收藏的仪表板。" icon="fa-star" />
     );
     default: return (
       <EmptyState
