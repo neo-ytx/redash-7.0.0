@@ -5,7 +5,7 @@
       <div class="t-header widget clearfix">
         <div class="dropdown pull-right widget-menu-remove"  ng-if="!$ctrl.public && $ctrl.dashboard.canEdit()">
           <div class="actions">
-            <a ng-click="$ctrl.deleteWidget()" title="Remove From Dashboard"><i class="zmdi zmdi-close"></i></a>
+            <a ng-click="$ctrl.deleteWidget()" title="从仪表板中移除"><i class="zmdi zmdi-close"></i></a>
           </div>
         </div>
         <div class="dropdown pull-right widget-menu-regular" ng-if="!$ctrl.public"
@@ -16,17 +16,17 @@
           </div>
 
           <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
-            <li ng-class="{'disabled': $ctrl.widget.getQueryResult().isEmpty()}"><a ng-href="{{$ctrl.widget.getQueryResult().getLink($ctrl.widget.getQuery().id, 'csv')}}" download="{{$ctrl.widget.getQueryResult().getName($ctrl.widget.getQuery().name, 'csv')}}" target="_self">Download as CSV File</a></li>
-            <li ng-class="{'disabled': $ctrl.widget.getQueryResult().isEmpty()}"><a ng-href="{{$ctrl.widget.getQueryResult().getLink($ctrl.widget.getQuery().id, 'xlsx')}}" download="{{$ctrl.widget.getQueryResult().getName($ctrl.widget.getQuery().name, 'xlsx')}}" target="_self">Download as Excel File</a></li>
+            <li ng-class="{'disabled': $ctrl.widget.getQueryResult().isEmpty()}"><a ng-href="{{$ctrl.widget.getQueryResult().getLink($ctrl.widget.getQuery().id, 'csv')}}" download="{{$ctrl.widget.getQueryResult().getName($ctrl.widget.getQuery().name, 'csv')}}" target="_self">下载CSV文件</a></li>
+            <li ng-class="{'disabled': $ctrl.widget.getQueryResult().isEmpty()}"><a ng-href="{{$ctrl.widget.getQueryResult().getLink($ctrl.widget.getQuery().id, 'xlsx')}}" download="{{$ctrl.widget.getQueryResult().getName($ctrl.widget.getQuery().name, 'xlsx')}}" target="_self">下载Excel文件</a></li>
 
             <li ng-if="$ctrl.canViewQuery || ($ctrl.dashboard.canEdit() && $ctrl.hasParameters())" class="divider"></li>
-            <li ng-if="$ctrl.canViewQuery"><a ng-href="{{$ctrl.widget.getQuery().getUrl(true, $ctrl.widget.visualization.id)}}">View Query</a></li>
+            <li ng-if="$ctrl.canViewQuery"><a ng-href="{{$ctrl.widget.getQuery().getUrl(true, $ctrl.widget.visualization.id)}}">查看查询</a></li>
             <li ng-if="$ctrl.dashboard.canEdit() && $ctrl.hasParameters()">
-              <li ng-if="$ctrl.dashboard.canEdit() && $ctrl.hasParameters()"><a ng-click="$ctrl.editParameterMappings()">Edit Parameters</a></li>
+              <li ng-if="$ctrl.dashboard.canEdit() && $ctrl.hasParameters()"><a ng-click="$ctrl.editParameterMappings()">编辑参数</a></li>
             </li>
 
             <li ng-if="$ctrl.dashboard.canEdit()" class="divider"></li>
-            <li ng-if="$ctrl.dashboard.canEdit()"><a ng-click="$ctrl.deleteWidget()">Remove from Dashboard</a></li>
+            <li ng-if="$ctrl.dashboard.canEdit()"><a ng-click="$ctrl.deleteWidget()">从仪表板中移除</a></li>
           </ul>
         </div>
         <div class="th-title">
@@ -77,7 +77,7 @@
       <div class="text-center">
         <h1><span class="zmdi zmdi-lock"></span></h1>
         <p class="text-muted">
-          This widget requires access to a data source you don't have access to.
+          此组件需要访问你无权访问的数据源。
         </p>
       </div>
     </div>
@@ -87,7 +87,7 @@
     <div class="body-row clearfix t-body">
       <div class="dropdown pull-right widget-menu-remove" ng-if="!$ctrl.public && $ctrl.dashboard.canEdit()">
         <div class="dropdown-header">
-          <a class="actions" ng-click="$ctrl.deleteWidget()" title="Remove From Dashboard"><i class="zmdi zmdi-close"></i></a>
+          <a class="actions" ng-click="$ctrl.deleteWidget()" title="从仪表板中移除"><i class="zmdi zmdi-close"></i></a>
         </div>
       </div>
       <div class="dropdown pull-right widget-menu-regular" ng-if="!$ctrl.public && $ctrl.dashboard.canEdit()" uib-dropdown>
@@ -96,8 +96,8 @@
         </div>
 
         <ul class="dropdown-menu pull-right" uib-dropdown-menu style="z-index:1000000">
-          <li><a ng-show="$ctrl.dashboard.canEdit()" ng-click="$ctrl.editTextBox()">Edit</a></li>
-          <li><a ng-show="$ctrl.dashboard.canEdit()" ng-click="$ctrl.deleteWidget()">Remove From Dashboard</a></li>
+          <li><a ng-show="$ctrl.dashboard.canEdit()" ng-click="$ctrl.editTextBox()">编辑</a></li>
+          <li><a ng-show="$ctrl.dashboard.canEdit()" ng-click="$ctrl.deleteWidget()">从仪表板中移除</a></li>
         </ul>
       </div>
     </div>

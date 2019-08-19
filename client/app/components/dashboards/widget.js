@@ -105,7 +105,7 @@ function DashboardWidgetCtrl($scope, $location, $uibModal, $window, $rootScope, 
   };
 
   this.deleteWidget = () => {
-    if (!$window.confirm(`Are you sure you want to remove "${this.widget.getName()}" from the dashboard?`)) {
+    if (!$window.confirm(`你确定要从仪表板中移除组件 "${this.widget.getName()}" 吗？`)) {
       return;
     }
 

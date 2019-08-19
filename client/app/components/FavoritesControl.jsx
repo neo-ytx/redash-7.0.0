@@ -34,7 +34,7 @@ export class FavoritesControl extends React.Component {
   render() {
     const { item, onChange } = this.props;
     const icon = item.is_favorite ? 'fa fa-star' : 'fa fa-star-o';
-    const title = item.is_favorite ? 'Remove from favorites' : 'Add to favorites';
+    const title = item.is_favorite ? '取消收藏' : '收藏';
     return (
       <a
         href="javascript:void(0)"
