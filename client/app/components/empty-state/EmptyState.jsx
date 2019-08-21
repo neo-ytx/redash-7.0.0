@@ -52,7 +52,7 @@ export function EmptyState({
   title,
   description,
   illustration,
-  // helpLink,
+  helpLink,
   onboardingMode,
   showAlertStep,
   showDashboardStep,
@@ -143,13 +143,13 @@ export function EmptyState({
             text="你的团队成员"
           />
         </ol>
-        {/* <p> */}
-        {/* 需要更多技术支持?{' '} */}
-        {/* <a href={helpLink} target="_blank" rel="noopener noreferrer"> */}
-        {/* 帮助 */}
-        {/* <i className="fa fa-external-link m-l-5" aria-hidden="true" /> */}
-        {/* </a> */}
-        {/* </p> */}
+        <p>
+         需要更多技术支持?{' '}
+          <a href={helpLink} target="_blank" rel="noopener noreferrer">
+         帮助
+            <i className="fa fa-external-link m-l-5" aria-hidden="true" />
+          </a>
+        </p>
       </div>
     </div>
   );
@@ -160,7 +160,7 @@ EmptyState.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string.isRequired,
   illustration: PropTypes.string.isRequired,
-  // helpLink: PropTypes.string.isRequired,
+  helpLink: PropTypes.string.isRequired,
 
   onboardingMode: PropTypes.bool,
   showAlertStep: PropTypes.bool,

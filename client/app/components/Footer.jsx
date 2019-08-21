@@ -2,19 +2,16 @@ import React from 'react';
 import { react2angular } from 'react2angular';
 
 export function Footer() {
-  // const separator = ' \u2022 ';
+  const separator = ' \u2022 ';
 
-  // return (
-  //   <div id="footer">
-  //     <a href="https://redash.io">Redash</a>
-  //     {separator}
-  //     <a href="https://redash.io/help/">Documentation</a>
-  //     {separator}
-  //     <a href="https://github.com/getredash/redash">Contribute</a>
-  //   </div>
-  // );
   return (
-    <div id="footer" />
+    <div id="footer">
+      <a href="https://redash.io">Redash</a>
+      {separator}
+      <a href="https://redash.io/help/">Documentation</a>
+      {separator}
+      <a href="https://github.com/getredash/redash">Contribute</a>
+    </div>
   );
 }
 

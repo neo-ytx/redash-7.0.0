@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- REDASH LOGO -->
-      <!--<a class="navbar-brand" ng-href="{{$ctrl.basePath}}"><img ng-src="{{$ctrl.logoUrl}}"/></a>-->
+      <a class="navbar-brand" ng-href="{{$ctrl.basePath}}"><img ng-src="{{$ctrl.logoUrl}}"/></a>
     </div>
     <div class="collapse navbar-collapse" uib-collapse="!isNavOpen">
       <!-- Main Left Nav-->
@@ -79,9 +79,9 @@
 
       <!-- Profile -->
       <ul class="nav navbar-nav navbar-right">
-        <!--<li>-->
-          <!--<help-trigger type="'HOME'" class-name="'navbar-link-ANGULAR_REMOVE_ME'"></help-trigger>-->
-        <!--</li>-->
+        <li>
+          <help-trigger type="'HOME'" class-name="'navbar-link-ANGULAR_REMOVE_ME'"></help-trigger>
+        </li>
         <li ng-show="$ctrl.currentUser.isAdmin">
           <a href="data_sources" title="设置"><i class="fa fa-sliders" aria-hidden="true"></i></a>
         </li>
