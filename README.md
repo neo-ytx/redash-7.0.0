@@ -7,6 +7,15 @@
 
 [![Documentation](https://img.shields.io/badge/docs-redash.io/help-brightgreen.svg)](https://redash.io/help/)
 
+### Redash汉化版本
++ 版本：基于redash-7.0.0版本。
++ 本地部署调试：
+  + 前段基于nodejs，可以修改webpack.config.js修改默认后段地址，也可以在`npm run start`的时候制定REDASH_BACKEND变量。
+  + 后端基于python，可以通过redash原文方法启动，其中python包的安装部分，如果有需要可以自行增减all_ds中的内容。
++ 镜像打包部署：
+  + 可以通过根目录下的Dockerfile打包成镜像。
+  + 通过setup文件夹下面的setup.sh进行部署，需要自行修改脚本，可以修改目录下的docker-compose.yml修改使用的源镜像。
+
 **_Redash_** is our take on freeing the data within our company in a way that will better fit our culture and usage patterns.
 
 Prior to **_Redash_**, we tried to use traditional BI suites and discovered a set of bloated, technically challenged and slow tools/flows. What we were looking for was a more hacker'ish way to look at data, so we built one.
