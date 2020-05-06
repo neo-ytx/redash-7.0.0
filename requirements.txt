@@ -40,7 +40,7 @@ celery==4.2.1
 kombu==4.2.2.post1
 jsonschema==2.4.0
 RestrictedPython==3.6.0
-pysaml2==4.5.0
+pysaml2==5.0.0
 pycrypto==2.6.1
 funcy==1.7.1
 sentry-sdk==0.7.2
